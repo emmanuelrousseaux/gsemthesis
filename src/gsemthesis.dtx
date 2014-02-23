@@ -1,0 +1,705 @@
+% \iffalse meta-comment
+%
+% Copyright (©) 2014 by Emmanuel Rousseaux <emmanuel.rousseaux+gsemthesis@gmail.com>
+% -------------------------------------------------------
+% 
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, version 1.3c
+% of this license.
+% The latest version of this license is in:
+%
+%    http://www.latex-project.org/lppl.txt
+%
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{gsemthesis.dtx}
+%</driver>
+%<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<class>\ProvidesClass{gsemthesis}
+%<*class>
+    [2014/02/19 v0.1.4.0 .dtx gsemthesis file]
+%</class>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\RequirePackage[top=2.5cm, bottom=2.5cm, left=4.5cm, right=3.5cm]{geometry}
+\RequirePackage{xcolor}
+\definecolor{erblue}{HTML}{126199}
+\RequirePackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=black, filecolor=erblue, citecolor=erblue, urlcolor=erblue}
+\RequirePackage{url}
+\RequirePackage{float}
+\EnableCrossrefs         
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{gsemthesis.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%
+% \changes{v0.1}{2014/02/19}{First draft}
+%
+% \GetFileInfo{gsemthesis.dtx}
+%
+% \DoNotIndex{\newcommand,\newenvironment}
+% 
+%
+% \title{The \textsf{gsemthesis} class\thanks{This document
+%   corresponds to \textsf{gsemthesis}~\fileversion, dated \filedate.}}
+% \author{Emmanuel Rousseaux \\ \url{emmanuel.rousseaux+gsemthesis@gmail.com}}
+%
+% \maketitle
+%
+% \begin{abstract}
+% This article introduces the |gsemthesis| class for \LaTeX. The |gsemthesis| class is a Phd thesis  template for the Geneva School of Economics and Management (GSEM), University of Geneva, Switzerland. The class provides utilities to easily set up the cover page, the front matter pages, the pages headers, etc. with respect to the official guidelines of the GSEM Faculty for writing PhD thesis.
+% This class is released under the LaTeX Project Public License version 1.3c.
+% \end{abstract}
+%
+% \bigskip
+%
+% \tableofcontents
+%
+% \vfill
+%
+% \section{Introduction}
+%
+% PhD thesis published within the Geneva School of Economics and Management have to follows some guidelines, especially for the cover page. The |gsemthesis| class is a \LaTeX{} template providing utilities to easily set up these guidelines in your thesis. In addition the class loads several usefull packages generally used when writing a thesis.
+% We recommend the user to have a look to the class definition in Section \ref{sec:classdef} to be aware of the list of packages that the class already includes. The Section \ref{sec:usage} details how to start with the |gsemthesis| class and how to configure your thesis. The user interested in customizing the class can read the Section \ref{sec:implementation} which details the full implementation of the class with usefull comments.
+% 
+% This class was successfully tested with pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian).
+% 
+% \section{Usage}
+% \label{sec:usage}
+% 
+% This Section introduces the use of the |gsemthesis| class. All macros and environments the class provides are described. We assume the user is already familiar with \LaTeX.
+%
+% \subsection{Installation}
+%
+% \emph{Forthcoming... depends on the release mode used.}
+%
+% \subsection{Getting started}
+%
+% To use the class start your document with the command |\documentclass{gsemthesis}|. A minimal file is:
+% \begin{verbatim}
+% \documentclass{gsemthesis}
+% \begin{document}
+% Here is it, I started my PhD!
+% \end{document}
+% \end{verbatim}
+%
+% \subsection{Configuring and printing the cover page}
+%
+% \DescribeMacro{\printcoverpage}
+% The class provides the GSEM PhD thesis cover page ready to be printed. You can ask to print it by calling |\printcoverpage| just after the |\begin{document}|. Before printing the cover page you first need to configure it with your thesis details: title, author, supervisors, comittee, etc.
+% The minimal example becomes:
+% \begin{verbatim}
+% \documentclass{gsemthesis}
+% \title{My PhD thesis}
+% \date{\today}
+% \where{Geneva}
+% \thesisNumber{480}
+% ... (others configuration commands)
+% \begin{document}
+% \printcoverpage
+% Here is it, I started my PhD!
+% \end{document}
+% \end{verbatim}%
+% \newpage
+% \DescribeMacro{\title}
+% \DescribeMacro{\date}
+% \DescribeMacro{\where}
+% The class use the classical |\title{|\emph{text}|}| and |\date{|\emph{text}|}| commands of the |book| class to set the title and the date. We add a command |\where{|\emph{text}|}| to specify where the thesis was defended.
+% \DescribeMacro{\authorFirstname}
+% \DescribeMacro{\authorLastname}
+% Instead of using the |\author{|\emph{text}|}| command we provide the two commands |\authorFirstname{|\emph{text}|}| and |\authorLastname{|\emph{text}|}| to separately handle the firstname and the lastname.
+% \DescribeMacro{\thesisMention}
+% You specify the specialization of your thesis with the |\thesisMention{|\emph{text}|}|.
+% \DescribeMacro{\thesisSupervisorA-B}
+% You can specify information about your thesis supervisor with the |\supervisorA{|\emph{title}|}{|\emph{firstname}|}{|\emph{lastname}|}| command. The \emph{title} field is usually filled with ``Prof.'' If you have a second supervisor your can use the |\supervisorB| command to provides her/his information.
+% \DescribeMacro{\thesisComitteeA-F}
+% You can specify information about members of your thesis comittee with the six |\thesisComitteeA-F{|\emph{title}|}{|\emph{firstname}|}{|\emph{lastname}|}{|\emph{role}|}| commands. With the \emph{role} field you specify the role played by this member in the committee. Generally you specify the role ``Chair'' in |\thesisComitteeA| and leave the field empty for others commands |\thesisComitteeB-F|.
+% \DescribeMacro{\thesisNumber}
+% When you submit your PhD thesis to the Press Service of the Unige, a unique thesis number will be assign to identify your thesis. This number has to be printed on the cover page. The |\thesisNumber{|\emph{text}|}| allows to print it.
+% 
+% \subsection{Configuring and printing the front matter pages}
+%
+% After the cover page the thesis has to provide in a specific order the acknowledgements, an abstract and an optional dedication. These elements are usually called the front matter. 
+% \DescribeMacro{\printfrontmatter}
+% These pages will be printed by calling the |\printfrontmatter| command. The best place for this command is just after the |\printcoverpage| command.
+% \DescribeMacro{\acknowledgements}
+% \DescribeMacro{\abstract}
+% \DescribeMacro{\dedication}
+% To fill these pages use the commands |\acknowledgements{|\emph{text}|}|, |\abstract{|\emph{text}|}| and |\dedication{|\emph{text}|}|. We suggest you use these commands in the preambule of the document, just after the commands used to set the cover page.
+%
+% \subsection{Introduction and conclusion}
+%
+% Generally we don't want to number the introduction and the conclusion, but we want they appear in the table of contents. This leads to a specific handling of the creation of these chapter, especially to have correct page headers.
+% \DescribeMacro{\startintroduction}
+% \DescribeMacro{\startconclusion}
+% Therefore, instead of using |\chapter{introduction}| (respectively |\chapter{conclusion}|) to start a such chapter we provide the function |\startintroduction| (respectively |\startconclusion|) to easily start the chapter with a correct handling of the table of contents and page headers.
+%
+% \subsection{Bibliography}
+%
+% \emph{Forthcoming} (to discuss: use biblatex, require biber, author-year style, sorting scheme)
+%
+% \subsection{Miscellaneous}
+%
+% The class also provides some optional functions that can turn out to be usefull when writing your thesis.
+% \DescribeEnv{itemize*}
+% The default |itemize| environment set important spaces between each items, the previous paragraph and the next paragraph. The |itemize*| environment reduces these spaces to allow a more compact (and nicer) presentation of a list item.
+% \emph{Forthcoming}. To add: section in redaction, todonotes
+%
+% \section{Implementation}
+% \label{sec:implementation}
+%
+% In this Section the full code of the |gsemthesis| is discussed. The reader interested in customizing the class will find useful comments to understand the design of the class.
+%
+% \subsection{Document properties}
+% \label{sec:classdef}
+%
+% The class is derived from the standard |book| class as follows:
+%    \begin{macrocode}
+\LoadClass[b5paper,10pt,twoside]{book}
+%    \end{macrocode}%
+% We set the document encoding to UTF-8
+%    \begin{macrocode}
+\usepackage[utf8]{inputenc}
+%    \end{macrocode}%
+% We use the |lmodern| vectorial fonts to render the document.
+%    \begin{macrocode}
+\usepackage{lmodern}
+%    \end{macrocode}
+% We use the |geometry| package to set margin properties
+%    \begin{macrocode}
+\RequirePackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+%    \end{macrocode}
+% We use the || package to handle some specific text spacing (title)
+%    \begin{macrocode}
+\usepackage{setspace}
+%    \end{macrocode}
+%
+% \subsection{Colors}
+% We define some nice colors that will be later used for links (url, email, citations, etc.). The |gsemblue| color is the official color (to date 2014.02.20) of the GSEM Faculty.
+%    \begin{macrocode}
+\usepackage{xcolor}
+\definecolor{erblue}{HTML}{126199}
+\definecolor{erorange}{HTML}{FF7F00}
+\definecolor{gsemblue}{HTML}{465F7F}
+%    \end{macrocode}
+% \subsection{Graphics}
+% We add some practical packages to handle several image files (.png, .pdf), handle placement of graphics, and handle subfigures
+%    \begin{macrocode}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subfigure}
+%    \end{macrocode}
+% \subsection{Link management}
+% We use the |hyperref| package to manage internal links and set colors for each link type.
+%    \begin{macrocode}
+\RequirePackage{hyperref}
+% \hypersetup{%
+% colorlinks=true,%
+% linkcolor=black,%
+% filecolor=gsemblue,%
+% citecolor=gsemblue,%
+% urlcolor=gsemblue%
+% }%
+\hypersetup{%
+colorlinks=true,%
+linkcolor=black,%
+filecolor=erblue,%
+citecolor=erblue,%
+urlcolor=erblue%
+}%
+%    \end{macrocode}
+% We use the |url| package for a complete support of external links and define a nice font style.
+%    \begin{macrocode}
+\RequirePackage{url}
+\urlstyle{sf}
+%    \end{macrocode}
+% \subsection{Maths}
+% We add standard packages from the American Mathematical Society to handle mathematical symbols, environment (equations, etc.) and the Computer Modern font use by default to render math.
+%    \begin{macrocode}
+\usepackage{amssymb,amsmath,amsfonts}
+%    \end{macrocode}
+% \subsection{Page headers management}
+% We use the |fancyhdr| package for a fine tuning of headers and footers of the different page type (cover page, chapters, unumbered chapters, etc.)
+%    \begin{macrocode}
+\usepackage{fancyhdr}
+%    \end{macrocode}
+% We set the |fancy| page style (default page style) as follows:
+%    \begin{macrocode}
+  \pagestyle{fancy}
+  \fancyhf{}
+  \fancyhead[LO]{\nouppercase{\leftmark}}
+  \fancyhead[RE]{\nouppercase{\rightmark}}
+  \fancyfoot[LE,RO]{\thepage}
+%    \end{macrocode}
+% We reset the |plain| style
+%    \begin{macrocode}
+  \fancypagestyle{plain}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyfoot[LE,RO]{\thepage}
+  }
+%    \end{macrocode}
+% We define a style for the cover page (actually not used)
+%    \begin{macrocode}
+  \fancypagestyle{cover}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0.5pt}
+  \renewcommand{\footrulewidth}{0.5pt}
+  }
+%    \end{macrocode}
+% We define a style for unumbered chapters (starred chapters)
+%    \begin{macrocode}
+  \fancypagestyle{unnumberedchapter}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyhead[LO]{\nouppercase{\leftmark}}
+  \fancyhead[RE]{\nouppercase{\rightmark}}
+  \fancyfoot[LE,RO]{\thepage}
+  }
+%    \end{macrocode}
+% When a new chapter starts on a odd number, we add a blank page to force it to start to a even number. We define an empty style for this blank page
+%    \begin{macrocode}
+   \fancypagestyle{empty}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyfoot[LE,RO]{}
+  }
+%    \end{macrocode}
+% Then we apply the empty style to odd page before a new chapter
+%    \begin{macrocode}
+  \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+      \hbox{}
+      \thispagestyle{empty}
+      \newpage
+      \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+  \clearpage{\pagestyle{empty}\cleardoublepage}
+%    \end{macrocode}
+% \subsection{Bibliography management}
+% We use biblatex/biber to process the bibliography
+%    \begin{macrocode}
+\usepackage[american]{babel}
+\usepackage{csquotes}
+\usepackage[backend=biber,natbib=true,style=authoryear,sorting=nymdt]{biblatex}
+%    \end{macrocode}
+% We use the style authoryear to print authors and the year when citing a document in the text. We define a customized sorting style to sort the list of references (printed at the end of the document) according to this (ordered) attributes: name, year, month, day, and title. FIXME: remove the volume, or add the journal before the title.
+% And we define the following sorting scheme
+%    \begin{macrocode}
+\DeclareSortingScheme{nymdt}{
+  \sort{
+    \field{presort}
+  }
+  \sort[final]{
+    \field{sortkey}
+  }
+  \sort{
+    \name{sortname}
+    \name{author}
+    \name{editor}
+    \name{translator}
+    \field{sorttitle}
+    \field{title}
+  }
+  \sort{
+    \field{sortyear}
+    \field{year}
+  }
+  \sort{
+    \field[padside=left,padwidth=2,padchar=0]{month}
+    \literal{00}
+  }
+  \sort{
+    \field[padside=left,padwidth=2,padchar=0]{day}
+    \literal{00}
+  }
+  \sort{
+    \field{sorttitle}
+  }
+  \sort{
+    \field[padside=left,padwidth=4,padchar=0]{volume}
+    \literal{0000}
+  }
+}
+%    \end{macrocode}
+% \subsection{Cover page}
+% \subsubsection{System-level functions}
+%  The following commands define labels for the different parts of the cover page
+%    \begin{macrocode}
+\def\thesisLabel{PhD Thesis}
+\def\thesisLocationLabel{
+Defended at \\[0.4em]%
+the {\large Geneva School of Economics and Management} \\[0.4em]%
+\emph{University of Geneva, Switzerland}
+}
+\def\thesisByLabel{By}
+\def\thesisDirectionLabel{under the direction of}
+\def\thesisGradeLabel{for the grade of}
+\def\thesisGrade{PhD in Economics and Managment}
+\def\thesisMentionLabel{mention}
+\def\thesisComitteeLabel{Members of the dissertation committee :}
+\def\thesisNumberLabel{Thesis number}
+%    \end{macrocode}
+%
+%
+% \subsubsection{User-level functions}
+% 
+% Set up of the cover page and assimilated functions.
+%
+% \begin{macro}{\where}
+% The where macro.
+%    \begin{macrocode}
+\newcommand{\where}[1]{\def\thethesisWhere{#1}}
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\authorFirstname}
+% The authorFirstname macro
+%    \begin{macrocode}
+\newcommand{\authorFirstname}[1]{\def\theauthorFirstname{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\authorLastname}
+% The authorLastname macro
+%    \begin{macrocode}
+\newcommand{\authorLastname}[1]{\def\theauthorLastname{\textsc{#1}}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thesisSupervisorA}
+% The SupervisorA macro
+%    \begin{macrocode}
+\newcommand{\thesisSupervisorA}[3]{\def\thethesisSupervisorA{#1~#2~\textsc{#3}}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thesisSupervisorB}
+% The SupervisorB macro
+%    \begin{macrocode}
+\newcommand{\thesisSupervisorB}[3]{\def\thethesisSupervisorB{#1~#2~\textsc{#3}}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thesisMention}
+% The thesisMention macro
+%    \begin{macrocode}
+\newcommand{\thesisMention}[1]{\def\thethesisMention{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thesisComitteeA}
+% The thesisComitteeA macro
+%    \begin{macrocode}
+\newcommand{\thesisComitteeA}[4]{%
+\ifx&#3&%
+  \def\thethesisComitteeA{}%
+\else
+  \def\thethesisComitteeA{#1~#2~\textsc{#3},~#4}%
+\fi
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thesisComitteeB}
+% The thesisComitteeB macro
+%    \begin{macrocode}
+\newcommand{\thesisComitteeB}[4]{%
+\ifx&#3&%
+  \def\thethesisComitteeB{}%
+\else
+  \def\thethesisComitteeB{#1~#2~\textsc{#3},~#4}%
+\fi
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thesisComitteeC}
+% The thesisComitteeC macro
+%    \begin{macrocode}
+\newcommand{\thesisComitteeC}[4]{%
+\ifx&#3&%
+  \def\thethesisComitteeC{}%
+\else
+  \def\thethesisComitteeC{#1~#2~\textsc{#3},~#4}%
+\fi
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thesisComitteeD}
+% The thesisComitteeD macro
+%    \begin{macrocode}
+\newcommand{\thesisComitteeD}[4]{%
+\ifx&#3&%
+  \def\thethesisComitteeD{}%
+\else
+  \def\thethesisComitteeD{#1~#2~\textsc{#3},~#4}%
+\fi
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thesisComitteeE}
+% The thesisComitteeE macro
+%    \begin{macrocode}
+\newcommand{\thesisComitteeE}[4]{%
+\ifx&#3&%
+  \def\thethesisComitteeE{}%
+\else
+  \def\thethesisComitteeE{#1~#2~\textsc{#3},~#4}%
+\fi
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thesisComitteeF}
+% The thesisComitteeF macro
+%    \begin{macrocode}
+\newcommand{\thesisComitteeF}[4]{%
+\ifx&#3&%
+  \def\thethesisComitteeF{}%
+\else
+  \def\thethesisComitteeF{#1~#2~\textsc{#3},~#4}%
+\fi
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thesisNumber}
+% The thesisNumber macro
+%    \begin{macrocode}
+\newcommand{\thesisNumber}[1]{\def\thethesisNumber{#1}}
+%    \end{macrocode}
+% \end{macro}
+% 
+% The cover page is created with the following code
+% \begin{macro}{\printcoverpage}
+% Print the cover page of the thesis.
+%    \begin{macrocode}
+\newcommand{\printcoverpage}{%
+\thispagestyle{empty}
+\begin{center}
+\rule{\linewidth}{0.4pt}
+
+\vspace*{1.2cm}
+
+{\huge
+  {\scshape
+    \begin{spacing}{0.8}
+      \@title
+    \end{spacing}
+  }
+}
+
+\vspace*{1.2cm}
+
+{\Large \thesisLabel}
+
+\vspace*{0.8cm}
+
+\thesisLocationLabel
+
+\vspace*{0.4cm}
+
+\thesisByLabel
+
+\vspace*{0.4cm}
+
+{\large \theauthorFirstname~\theauthorLastname}
+
+\vspace*{0.4cm}
+
+\thesisDirectionLabel
+
+\vspace*{0.4cm}
+
+\thethesisSupervisorA
+
+\thethesisSupervisorB
+
+\vspace*{0.8cm}
+
+\thesisGradeLabel
+
+\vspace*{0.4cm}
+
+\thesisGrade \\
+\thesisMentionLabel ~ \thethesisMention
+
+\vspace*{0.8cm}
+
+\thesisDirectionLabel
+
+\vspace*{0.4cm}
+
+\thethesisComitteeA
+
+\thethesisComitteeB
+
+\thethesisComitteeC
+
+\thethesisComitteeD
+
+\thethesisComitteeE
+
+\thethesisComitteeF
+
+% \vspace*{0.4cm}
+\vfill
+
+\thesisNumberLabel ~ \thethesisNumber
+
+\vspace*{0.1cm}
+
+\thethesisWhere, \@date
+
+
+\vspace*{0.1cm}
+
+\rule{\linewidth}{0.4pt}
+\end{center}
+
+\newpage
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Front matter}
+%
+% \begin{macro}{\acknowledgements}
+% The |acknowledgements| macro
+%    \begin{macrocode}
+\newcommand{\acknowledgements}[1]{\def\theacknowledgements{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\abstract}
+% The |abstract| macro
+%    \begin{macrocode}
+\newcommand{\abstract}[1]{\def\theabstract{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\dedication}
+% The |dedication| macro
+%    \begin{macrocode}
+\newcommand{\dedication}[1]{\def\thededication{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\printfrontmatter}
+% The front matter pages are created with the following code
+%    \begin{macrocode}
+\newcommand{\printfrontmatter}{%
+\frontmatter
+
+% Print the table of contents
+\tableofcontents
+
+\newpage
+
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+\label{ch:acknowledgements}
+\thispagestyle{plain}
+\theacknowledgements
+
+\newpage
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\label{ch:abstract}
+\thispagestyle{plain}
+\theabstract
+
+\newpage\newpage
+
+\thispagestyle{plain}
+
+\vspace*{4cm}
+{\em
+\raggedleft\thededication\par
+}
+
+\newpage
+
+\mainmatter
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Introduction and conclusion starter}
+%
+% \begin{macro}{\startintroduction}
+% The front matter pages are created with the following code
+%    \begin{macrocode}
+\newcommand{\startintroduction}{%
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+\label{ch:introduction}
+\markboth{}{Introduction}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\startconclusion}
+% The front matter pages are created with the following code
+%    \begin{macrocode}
+\newcommand{\startconclusion}{%
+\chapter*{Conclusion}
+\addcontentsline{toc}{chapter}{Conclusion}
+\label{ch:conclusion}
+\markboth{}{Conclusion}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Miscellaneous}
+% \begin{environment}{itemize*}
+% This is a dummy environment.  If it did anything, we'd describe its
+% implementation here.
+%    \begin{macrocode}
+\newenvironment{itemize*}%
+  {\vspace{-2mm}\begin{itemize}%
+    \setlength{\itemsep}{0pt}%
+    \setlength{\parskip}{0pt}%
+  }%
+  {\end{itemize}\vspace{-2mm}%
+  }
+%    \end{macrocode}
+% \end{environment}
+%
+% \newpage
+% \section{Complete example}
+% \begin{verbatim}
+% Forthcoming
+% \end{verbatim}
+% \Finale
+\endinput
