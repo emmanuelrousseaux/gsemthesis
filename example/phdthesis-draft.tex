@@ -1,0 +1,128 @@
+\documentclass[draft]{gsemthesis} % For your thesis, remove the option [draft]
+\usepackage{lipsum} % used for this demo file, for your thesis you can remove it
+% ==================================================
+% THESIS SETTINGS
+% Fill the following fields with your thesis details
+% ==================================================
+\title{An innovative approach to deal with a very important issue}
+\date{\today}
+\where{Geneva}
+\authorFirstname{Firstname}
+\authorLastname{Lastname}
+% \thesisSupervisorX{TITLE}{FIRSTNAME}{LASTNAME}
+\thesisSupervisorA{Prof.}{Mike}{Moore}
+\thesisSupervisorB{Prof.}{John}{Jogger}
+\thesisMention{Econometrics}
+% \thesisComitteeX{TITLE}{FIRSTNAME}{LASTNAME}{ROLE}
+\thesisComitteeA{Prof.}{Mike}{Moore}{Chair}
+\thesisComitteeB{Prof.}{Mike}{Moore}{}
+\thesisComitteeC{Prof.}{Mike}{Moore}{}
+\thesisComitteeD{Dr.}{Mike}{Moore}{}
+\thesisComitteeE{}{}{}{}
+\thesisComitteeF{}{}{}{}
+\thesisNumber{480}
+
+
+\acknowledgements{
+\lipsum[1-3]
+}
+
+\abstract{
+How could I have the abstract (with the title abstract) on the title page ? 
+}
+
+\dedication{
+To my family.
+}
+
+% Define here your bib files (you can use absolute paths)
+\addbibresource{literature-review-topic1.bib}
+\addbibresource{literature-review-topic2.bib}
+%\global\draft
+% ==================================================
+% BEGIN DOCUMENT
+% Document starts here
+% ==================================================
+\begin{document}
+%	\global\draft
+%\draft
+% Print the cover page
+\printcoverpage
+%
+%% Print the front matter pages
+\printfrontmatter
+
+% ==================================================
+% INTRODUCTION
+% ==================================================
+\startintroduction 
+%
+%\lipsum[1]
+%
+%\section*{Context of this study}
+%\addcontentsline{toc}{section}{Context of this study}
+%\label{sec:context}
+%
+%\lipsum[2]
+%\begin{itemize*}
+%\item a first item
+%\item a second item
+%\end{itemize*}
+%\lipsum[3-29]
+
+
+
+% ==================================================
+% CHAPTER DELIMITER
+% ==================================================
+\chapter{Literature review}
+\label{ch:lt}
+
+\lipsum[30]
+
+\section{A first approach}
+
+\lipsum[31-50]
+
+\section{A second approach}
+
+\lipsum[51-70]
+
+In \textcite{keyref2} the authors improve the \emph{xxx} methodology that has been presented in \autocite{keyref1}.
+
+
+
+
+% ==================================================
+% CONCLUSION
+% ==================================================
+\startconclusion
+
+\lipsum[100-109]
+
+
+
+
+
+
+% ==================================================
+% BACKMATTER
+% ==================================================
+
+% List of tables and figures
+\listoftables
+\listoffigures
+
+
+% Bibliography
+\newpage
+\printbibliography
+
+
+% Appendices
+\appendix
+\chapter{A useful appendix}
+
+Appendices appear after the bibliography. 
+
+\end{document}
