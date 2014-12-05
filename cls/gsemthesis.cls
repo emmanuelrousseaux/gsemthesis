@@ -268,10 +268,6 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 \newcommand{\printfrontmatter}{%
 \frontmatter
 
-\tableofcontents
-
-\newpage
-
 \chapter*{Acknowledgements}
 \addcontentsline{toc}{chapter}{Acknowledgements}
 \label{ch:acknowledgements}
@@ -294,7 +290,9 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 \thispagestyle{plain}
 \theabstractFR
 
-\newpage\newpage
+\tableofcontents
+
+\cleardoublepage
 
 \thispagestyle{plain}
 
