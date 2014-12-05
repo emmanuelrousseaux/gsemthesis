@@ -46,13 +46,13 @@ urlcolor=erblue%
 \usepackage{fancyhdr}
   \pagestyle{fancy}
   \fancyhf{}
-  \fancyhead[LO]{\nouppercase{\leftmark}}
-  \fancyhead[RE]{\nouppercase{\rightmark}}
-  \fancyfoot[LE,RO]{\thepage}
+  \fancyhead[LO]{\thepage\hfill\nouppercase{\leftmark}}
+  \fancyhead[RE]{\nouppercase{\rightmark}\hfill\thepage}
+  \fancyfoot[LE,RO]{}
   \fancypagestyle{plain}{
   \fancyhf{}
   \renewcommand{\headrulewidth}{0pt}
-  \fancyfoot[LE,RO]{\thepage}
+  \fancyfoot[LE,RO]{}
   }
   \fancypagestyle{cover}{
   \fancyhf{}
@@ -65,7 +65,7 @@ urlcolor=erblue%
   \renewcommand{\footrulewidth}{0pt}
   \fancyhead[LO]{\nouppercase{\leftmark}}
   \fancyhead[RE]{\nouppercase{\rightmark}}
-  \fancyfoot[LE,RO]{\thepage}
+  \fancyfoot[LE,RO]{}
   }
    \fancypagestyle{empty}{
   \fancyhf{}
