@@ -23,6 +23,12 @@
 \LoadClass[b5paper,10pt,twoside]{book}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
+\usepackage{etoolbox}
+\newtoggle{fr}
+\DeclareOption{fr}{\toggletrue{fr}}
+\newtoggle{draft}
+\DeclareOption{draft}{\toggletrue{draft}}
+\ProcessOptions
 \RequirePackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage{setspace}
 \usepackage{xcolor}
@@ -44,40 +50,40 @@ urlcolor=erblue%
 \urlstyle{sf}
 \usepackage{amssymb,amsmath,amsfonts}
 \usepackage{fancyhdr}
-  \pagestyle{fancy}
-  \fancyhf{}
-  \fancyhead[LO]{\thepage\hfill\nouppercase{\leftmark}}
-  \fancyhead[RE]{\nouppercase{\rightmark}\hfill\thepage}
-  \fancyfoot[LE,RO]{}
-  \fancypagestyle{plain}{
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\thepage\hfill\nouppercase{\leftmark}}
+\fancyhead[RE]{\nouppercase{\rightmark}\hfill\thepage}
+\fancyfoot[LE,RO]{}
+\fancypagestyle{plain}{
   \fancyhf{}
   \renewcommand{\headrulewidth}{0pt}
   \fancyfoot[LE,RO]{}
-  }
-  \fancypagestyle{cover}{
+}
+\fancypagestyle{cover}{
   \fancyhf{}
   \renewcommand{\headrulewidth}{0.5pt}
   \renewcommand{\footrulewidth}{0.5pt}
-  }
-  \fancypagestyle{unnumberedchapter}{
+}
+\fancypagestyle{unnumberedchapter}{
   \fancyhf{}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
   \fancyhead[LO]{\nouppercase{\leftmark}}
   \fancyhead[RE]{\nouppercase{\rightmark}}
   \fancyfoot[LE,RO]{}
-  }
-   \fancypagestyle{empty}{
+}
+\fancypagestyle{empty}{
   \fancyhf{}
   \renewcommand{\headrulewidth}{0pt}
   \fancyfoot[LE,RO]{}
-  }
-  \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
-      \hbox{}
-      \thispagestyle{empty}
-      \newpage
-      \if@twocolumn\hbox{}\newpage\fi\fi\fi}
-  \clearpage{\pagestyle{empty}\cleardoublepage}
+}
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+    \hbox{}
+    \thispagestyle{empty}
+    \newpage
+    \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\clearpage{\pagestyle{empty}\cleardoublepage}
 \usepackage[american]{babel}
 \usepackage{csquotes}
 \usepackage[backend=biber,natbib=true,style=authoryear,sorting=nymdt]{biblatex}
@@ -116,7 +122,11 @@ urlcolor=erblue%
     \literal{0000}
   }
 }
-\def\thesisLabel{PhD Thesis}
+\iftoggle{fr}{
+  \def\thesisLabel{Thèse de Doctorat}
+}{
+  \def\thesisLabel{PhD Thesis}
+}
 \def\thesisLocationLabel{
 Defended at \\[0.4em]%
 the {\large Geneva School of Economics and Management} \\[0.4em]%
