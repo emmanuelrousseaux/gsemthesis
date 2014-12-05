@@ -84,7 +84,11 @@ urlcolor=erblue%
     \newpage
     \if@twocolumn\hbox{}\newpage\fi\fi\fi}
 \clearpage{\pagestyle{empty}\cleardoublepage}
-\usepackage[american]{babel}
+\iftoggle{fr}{
+  \usepackage[francais]{babel}
+}{
+  \usepackage[english]{babel}
+}
 \usepackage{csquotes}
 \usepackage[backend=biber,natbib=true,style=authoryear,sorting=nymdt]{biblatex}
 \DeclareSortingScheme{nymdt}{
@@ -128,17 +132,33 @@ urlcolor=erblue%
   \def\thesisLabel{PhD Thesis}
 }
 \def\thesisLocationLabel{
-Defended at \\[0.4em]%
-the {\large Geneva School of Economics and Management} \\[0.4em]%
-\emph{University of Geneva, Switzerland}
+~ \\[0.4em]%
+{\large Geneva School of Economics and Management} \\[0.4em]%
+  \iftoggle{fr}{
+    \emph{Université de Genève, Suisse}
+  }{
+    \emph{University of Geneva, Switzerland}
+  }
 }
-\def\thesisByLabel{By}
-\def\thesisDirectionLabel{under the direction of}
-\def\thesisGradeLabel{for the grade of}
+\def\thesisByLabel{} % depreciated
+\def\thesisDirectionLabel{} % depreciated
+\iftoggle{fr}{
+  \def\thesisGradeLabel{Pour le grade de}
+}{
+  \def\thesisGradeLabel{For the grade of}
+}
 \def\thesisGrade{PhD in Economics and Managment}
 \def\thesisMentionLabel{mention}
-\def\thesisCommitteeLabel{Members of the dissertation committee :}
-\def\thesisNumberLabel{Thesis number}
+\iftoggle{fr}{
+  \def\thesisCommitteeLabel{Membres du jury}
+}{
+  \def\thesisCommitteeLabel{Members of the dissertation committee:}
+}
+\iftoggle{fr}{
+  \def\thesisNumberLabel{Thèse no.}
+}{
+  \def\thesisNumberLabel{Thesis No.}
+}
 \newcommand{\where}[1]{\def\thethesisWhere{#1}}
 \newcommand{\authorFirstname}[1]{\def\theauthorFirstname{#1}}
 \newcommand{\authorLastname}[1]{\def\theauthorLastname{\textsc{#1}}}
@@ -231,7 +251,13 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 
   \vspace*{0.8cm}
 
-  \iftoggle{draft}{\emph{Draft version}}{\thesisGradeLabel}
+  \iftoggle{draft}{
+    \iftoggle{fr}{
+      \emph{Ébauche}
+    }{
+      \emph{Draft}
+    }
+  }{\thesisGradeLabel}
 
   \vspace*{0.4cm}
 
@@ -240,7 +266,7 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 
   \vspace*{0.8cm}
 
-  \iftoggle{draft}{~}{\thesisDirectionLabel}
+  \iftoggle{draft}{~}{\thesisCommitteeLabel}
 
   \vspace*{0.4cm}
 
@@ -258,6 +284,8 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 
   % \vspace*{0.4cm}
   \vfill
+
+  \iftoggle{draft}{~}{\thesisNumberLabel ~ \thethesisNumber}
 
   \vspace*{0.1cm}
 
@@ -278,27 +306,48 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
   \iftoggle{draft}{~}{
     \frontmatter
 
-    \chapter*{Acknowledgements}
-    \addcontentsline{toc}{chapter}{Acknowledgements}
+    \iftoggle{fr}{
+      \chapter*{Remerciements}
+      \addcontentsline{toc}{chapter}{Remerciements}
+    }{
+      \chapter*{Acknowledgements}
+      \addcontentsline{toc}{chapter}{Acknowledgements}
+    }
     \label{ch:acknowledgements}
     \thispagestyle{plain}
     \theacknowledgements
 
     \newpage
 
-    \chapter*{Abstract}
-    \addcontentsline{toc}{chapter}{Abstract}
-    \label{ch:abstractEN}
-    \thispagestyle{plain}
-    \theabstractEN
+    \iftoggle{fr}{
+      \chapter*{Résumé}
+      \addcontentsline{toc}{chapter}{Résumé}
+      \label{ch:abstractFR}
+      \thispagestyle{plain}
+      \theabstractFR
 
-    \newpage
+      \newpage
 
-    \chapter*{Résumé}
-    \addcontentsline{toc}{chapter}{Résumé}
-    \label{ch:abstractFR}
-    \thispagestyle{plain}
-    \theabstractFR
+      \chapter*{Abstract}
+      \addcontentsline{toc}{chapter}{Abstract}
+      \label{ch:abstractEN}
+      \thispagestyle{plain}
+      \theabstractEN
+    }{
+      \chapter*{Abstract}
+      \addcontentsline{toc}{chapter}{Abstract}
+      \label{ch:abstractEN}
+      \thispagestyle{plain}
+      \theabstractEN
+
+      \newpage
+
+      \chapter*{Résumé}
+      \addcontentsline{toc}{chapter}{Résumé}
+      \label{ch:abstractFR}
+      \thispagestyle{plain}
+      \theabstractFR
+    }
   }
 
   \tableofcontents
