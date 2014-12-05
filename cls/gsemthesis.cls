@@ -189,131 +189,134 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 }
 \newcommand{\thesisNumber}[1]{\def\thethesisNumber{#1}}
 \newcommand{\printcoverpage}{%
-\thispagestyle{empty}
-\begin{center}
-\rule{\linewidth}{0.4pt}
+  \thispagestyle{empty}
+  \begin{center}
+  \rule{\linewidth}{0.4pt}
 
-\vspace*{1.2cm}
+  \vspace*{1.2cm}
 
-{\huge
-  {\scshape
-    \begin{spacing}{0.8}
-      \@title
-    \end{spacing}
+  {\huge
+    {\scshape
+      \begin{spacing}{0.8}
+        \@title
+      \end{spacing}
+    }
   }
-}
 
-\vspace*{1.2cm}
+  \vspace*{1.2cm}
 
-{\Large \thesisLabel}
+  {\Large \thesisLabel}
 
-\vspace*{0.8cm}
+  \vspace*{0.8cm}
 
-\thesisLocationLabel
+  \thesisLocationLabel
 
-\vspace*{0.4cm}
+  \vspace*{0.4cm}
 
-\thesisByLabel
+  \thesisByLabel
 
-\vspace*{0.4cm}
+  \vspace*{0.4cm}
 
-{\large \theauthorFirstname~\theauthorLastname}
+  {\large \theauthorFirstname~\theauthorLastname}
 
-\vspace*{0.4cm}
+  \vspace*{0.4cm}
 
-\thesisDirectionLabel
+  \iftoggle{draft}{~}{\thesisDirectionLabel}
 
-\vspace*{0.4cm}
+  \vspace*{0.4cm}
 
-\thethesisSupervisorA
+  \iftoggle{draft}{~}{\thethesisSupervisorA}
 
-\thethesisSupervisorB
+  \iftoggle{draft}{~}{\thethesisSupervisorB}
 
-\vspace*{0.8cm}
+  \vspace*{0.8cm}
 
-\thesisGradeLabel
+  \iftoggle{draft}{\emph{Draft version}}{\thesisGradeLabel}
 
-\vspace*{0.4cm}
+  \vspace*{0.4cm}
 
-\thesisGrade \\
-\thesisMentionLabel ~ \thethesisMention
+  \iftoggle{draft}{~}{\thesisGrade} \\
+  \iftoggle{draft}{~}{\thesisMentionLabel ~ \thethesisMention}
 
-\vspace*{0.8cm}
+  \vspace*{0.8cm}
 
-\thesisDirectionLabel
+  \iftoggle{draft}{~}{\thesisDirectionLabel}
 
-\vspace*{0.4cm}
+  \vspace*{0.4cm}
 
-\thethesisCommitteeA
+  \iftoggle{draft}{~}{\thethesisCommitteeA}
 
-\thethesisCommitteeB
+  \iftoggle{draft}{~}{\thethesisCommitteeB}
 
-\thethesisCommitteeC
+  \iftoggle{draft}{~}{\thethesisCommitteeC}
 
-\thethesisCommitteeD
+  \iftoggle{draft}{~}{\thethesisCommitteeD}
 
-\thethesisCommitteeE
+  \iftoggle{draft}{~}{\thethesisCommitteeE}
 
-\thethesisCommitteeF
+  \iftoggle{draft}{~}{\thethesisCommitteeF}
 
-\vfill
+  % \vspace*{0.4cm}
+  \vfill
 
-\thesisNumberLabel ~ \thethesisNumber
+  \vspace*{0.1cm}
 
-\vspace*{0.1cm}
+  \iftoggle{draft}{~}{\thethesisWhere,} \@date
 
-\thethesisWhere, \@date
+  \vspace*{0.1cm}
 
-\vspace*{0.1cm}
+  \rule{\linewidth}{0.4pt}
+  \end{center}
 
-\rule{\linewidth}{0.4pt}
-\end{center}
-
-\newpage
 }%
 \newcommand{\acknowledgements}[1]{\def\theacknowledgements{#1}}
 \newcommand{\abstractEN}[1]{\def\theabstractEN{#1}}
 \newcommand{\abstractFR}[1]{\def\theabstractFR{#1}}
 \newcommand{\dedication}[1]{\def\thededication{#1}}
 \newcommand{\printfrontmatter}{%
-\frontmatter
 
-\chapter*{Acknowledgements}
-\addcontentsline{toc}{chapter}{Acknowledgements}
-\label{ch:acknowledgements}
-\thispagestyle{plain}
-\theacknowledgements
+  \iftoggle{draft}{~}{
+    \frontmatter
 
-\newpage
+    \chapter*{Acknowledgements}
+    \addcontentsline{toc}{chapter}{Acknowledgements}
+    \label{ch:acknowledgements}
+    \thispagestyle{plain}
+    \theacknowledgements
 
-\chapter*{Abstract}
-\addcontentsline{toc}{chapter}{Abstract}
-\label{ch:abstractEN}
-\thispagestyle{plain}
-\theabstractEN
+    \newpage
 
-\newpage
+    \chapter*{Abstract}
+    \addcontentsline{toc}{chapter}{Abstract}
+    \label{ch:abstractEN}
+    \thispagestyle{plain}
+    \theabstractEN
 
-\chapter*{Résumé}
-\addcontentsline{toc}{chapter}{Résumé}
-\label{ch:abstractFR}
-\thispagestyle{plain}
-\theabstractFR
+    \newpage
 
-\tableofcontents
+    \chapter*{Résumé}
+    \addcontentsline{toc}{chapter}{Résumé}
+    \label{ch:abstractFR}
+    \thispagestyle{plain}
+    \theabstractFR
+  }
 
-\cleardoublepage
+  \tableofcontents
 
-\thispagestyle{plain}
+  \iftoggle{draft}{~}{
+    \cleardoublepage
 
-\vspace*{4cm}
-{\em
-\raggedleft\thededication\par
-}
+    \thispagestyle{plain}
 
-\newpage
+    \vspace*{4cm}
+    {\em
+    \raggedleft\thededication\par
+    }
 
-\mainmatter
+    \newpage
+  }
+
+  \mainmatter
 }%
 \newcommand{\startintroduction}{%
 \chapter*{Introduction}

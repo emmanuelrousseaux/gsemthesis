@@ -535,89 +535,88 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 % Print the cover page of the thesis.
 %    \begin{macrocode}
 \newcommand{\printcoverpage}{%
-\thispagestyle{empty}
-\begin{center}
-\rule{\linewidth}{0.4pt}
-
-\vspace*{1.2cm}
-
-{\huge
-  {\scshape
-    \begin{spacing}{0.8}
-      \@title
-    \end{spacing}
+  \thispagestyle{empty}
+  \begin{center}
+  \rule{\linewidth}{0.4pt}
+  
+  \vspace*{1.2cm}
+  
+  {\huge
+    {\scshape
+      \begin{spacing}{0.8}
+        \@title
+      \end{spacing}
+    }
   }
-}
-
-\vspace*{1.2cm}
-
-{\Large \thesisLabel}
-
-\vspace*{0.8cm}
-
-\thesisLocationLabel
-
-\vspace*{0.4cm}
-
-\thesisByLabel
-
-\vspace*{0.4cm}
-
-{\large \theauthorFirstname~\theauthorLastname}
-
-\vspace*{0.4cm}
-
-\thesisDirectionLabel
-
-\vspace*{0.4cm}
-
-\thethesisSupervisorA
-
-\thethesisSupervisorB
-
-\vspace*{0.8cm}
-
-\thesisGradeLabel
-
-\vspace*{0.4cm}
-
-\thesisGrade \\
-\thesisMentionLabel ~ \thethesisMention
-
-\vspace*{0.8cm}
-
-\thesisDirectionLabel
-
-\vspace*{0.4cm}
-
-\thethesisCommitteeA
-
-\thethesisCommitteeB
-
-\thethesisCommitteeC
-
-\thethesisCommitteeD
-
-\thethesisCommitteeE
-
-\thethesisCommitteeF
-
-% \vspace*{0.4cm}
-\vfill
-
-\thesisNumberLabel ~ \thethesisNumber
-
-\vspace*{0.1cm}
-
-\thethesisWhere, \@date
-
-
-\vspace*{0.1cm}
-
-\rule{\linewidth}{0.4pt}
-\end{center}
-
-\newpage
+  
+  \vspace*{1.2cm}
+  
+  {\Large \thesisLabel}
+  
+  \vspace*{0.8cm}
+  
+  \thesisLocationLabel
+  
+  \vspace*{0.4cm}
+  
+  \thesisByLabel
+  
+  \vspace*{0.4cm}
+  
+  {\large \theauthorFirstname~\theauthorLastname}
+  
+  \vspace*{0.4cm}
+  
+  \iftoggle{draft}{~}{\thesisDirectionLabel}
+  
+  \vspace*{0.4cm}
+  
+  \iftoggle{draft}{~}{\thethesisSupervisorA}
+  
+  \iftoggle{draft}{~}{\thethesisSupervisorB}
+  
+  \vspace*{0.8cm}
+  
+  \iftoggle{draft}{\emph{Draft version}}{\thesisGradeLabel}
+  
+  \vspace*{0.4cm}
+  
+  \iftoggle{draft}{~}{\thesisGrade} \\
+  \iftoggle{draft}{~}{\thesisMentionLabel ~ \thethesisMention}
+  
+  \vspace*{0.8cm}
+  
+  \iftoggle{draft}{~}{\thesisDirectionLabel}
+  
+  \vspace*{0.4cm}
+  
+  \iftoggle{draft}{~}{\thethesisCommitteeA}
+  
+  \iftoggle{draft}{~}{\thethesisCommitteeB}
+  
+  \iftoggle{draft}{~}{\thethesisCommitteeC}
+  
+  \iftoggle{draft}{~}{\thethesisCommitteeD}
+  
+  \iftoggle{draft}{~}{\thethesisCommitteeE}
+  
+  \iftoggle{draft}{~}{\thethesisCommitteeF}
+  
+  % \vspace*{0.4cm}
+  \vfill
+  
+  
+  
+  \vspace*{0.1cm}
+  
+  \iftoggle{draft}{~}{\thethesisWhere,} \@date
+  
+  
+  \vspace*{0.1cm}
+  
+  \rule{\linewidth}{0.4pt}
+  \end{center}
+  
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -656,44 +655,49 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 % The front matter pages are created with the following code
 %    \begin{macrocode}
 \newcommand{\printfrontmatter}{%
-\frontmatter
-
-\chapter*{Acknowledgements}
-\addcontentsline{toc}{chapter}{Acknowledgements}
-\label{ch:acknowledgements}
-\thispagestyle{plain}
-\theacknowledgements
-
-\newpage
-
-\chapter*{Abstract}
-\addcontentsline{toc}{chapter}{Abstract}
-\label{ch:abstractEN}
-\thispagestyle{plain}
-\theabstractEN
-
-\newpage
-
-\chapter*{Résumé}
-\addcontentsline{toc}{chapter}{Résumé}
-\label{ch:abstractFR}
-\thispagestyle{plain}
-\theabstractFR
-
-\tableofcontents
-
-\cleardoublepage
-
-\thispagestyle{plain}
-
-\vspace*{4cm}
-{\em
-\raggedleft\thededication\par
-}
-
-\newpage
-
-\mainmatter
+  
+  \iftoggle{draft}{~}{
+    \frontmatter
+    
+    \chapter*{Acknowledgements}
+    \addcontentsline{toc}{chapter}{Acknowledgements}
+    \label{ch:acknowledgements}
+    \thispagestyle{plain}
+    \theacknowledgements
+    
+    \newpage
+    
+    \chapter*{Abstract}
+    \addcontentsline{toc}{chapter}{Abstract}
+    \label{ch:abstractEN}
+    \thispagestyle{plain}
+    \theabstractEN
+    
+    \newpage
+    
+    \chapter*{Résumé}
+    \addcontentsline{toc}{chapter}{Résumé}
+    \label{ch:abstractFR}
+    \thispagestyle{plain}
+    \theabstractFR
+  }
+  
+  \tableofcontents
+  
+  \iftoggle{draft}{~}{
+    \cleardoublepage
+    
+    \thispagestyle{plain}
+    
+    \vspace*{4cm}
+    {\em
+    \raggedleft\thededication\par
+    }
+    
+    \newpage
+  }
+  
+  \mainmatter
 }%
 %    \end{macrocode}
 % \end{macro}
