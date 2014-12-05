@@ -19,7 +19,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{gsemthesis}
-    [2014/02/23 v0.1.4.0 .dtx gsemthesis file]
+    [2014/12/05 v0.9.0 .dtx gsemthesis file]
 \LoadClass[b5paper,10pt,twoside]{book}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -127,7 +127,7 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 \def\thesisGradeLabel{for the grade of}
 \def\thesisGrade{PhD in Economics and Managment}
 \def\thesisMentionLabel{mention}
-\def\thesisComitteeLabel{Members of the dissertation committee :}
+\def\thesisCommitteeLabel{Members of the dissertation committee :}
 \def\thesisNumberLabel{Thesis number}
 \newcommand{\where}[1]{\def\thethesisWhere{#1}}
 \newcommand{\authorFirstname}[1]{\def\theauthorFirstname{#1}}
@@ -135,46 +135,46 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 \newcommand{\thesisSupervisorA}[3]{\def\thethesisSupervisorA{#1~#2~\textsc{#3}}}
 \newcommand{\thesisSupervisorB}[3]{\def\thethesisSupervisorB{#1~#2~\textsc{#3}}}
 \newcommand{\thesisMention}[1]{\def\thethesisMention{#1}}
-\newcommand{\thesisComitteeA}[4]{%
+\newcommand{\thesisCommitteeA}[4]{%
 \ifx&#3&%
-  \def\thethesisComitteeA{}%
+  \def\thethesisCommitteeA{}%
 \else
-  \def\thethesisComitteeA{#1~#2~\textsc{#3},~#4}%
+  \def\thethesisCommitteeA{#1~#2~\textsc{#3},~#4}%
 \fi
 }
-\newcommand{\thesisComitteeB}[4]{%
+\newcommand{\thesisCommitteeB}[4]{%
 \ifx&#3&%
-  \def\thethesisComitteeB{}%
+  \def\thethesisCommitteeB{}%
 \else
-  \def\thethesisComitteeB{#1~#2~\textsc{#3},~#4}%
+  \def\thethesisCommitteeB{#1~#2~\textsc{#3},~#4}%
 \fi
 }
-\newcommand{\thesisComitteeC}[4]{%
+\newcommand{\thesisCommitteeC}[4]{%
 \ifx&#3&%
-  \def\thethesisComitteeC{}%
+  \def\thethesisCommitteeC{}%
 \else
-  \def\thethesisComitteeC{#1~#2~\textsc{#3},~#4}%
+  \def\thethesisCommitteeC{#1~#2~\textsc{#3},~#4}%
 \fi
 }
-\newcommand{\thesisComitteeD}[4]{%
+\newcommand{\thesisCommitteeD}[4]{%
 \ifx&#3&%
-  \def\thethesisComitteeD{}%
+  \def\thethesisCommitteeD{}%
 \else
-  \def\thethesisComitteeD{#1~#2~\textsc{#3},~#4}%
+  \def\thethesisCommitteeD{#1~#2~\textsc{#3},~#4}%
 \fi
 }
-\newcommand{\thesisComitteeE}[4]{%
+\newcommand{\thesisCommitteeE}[4]{%
 \ifx&#3&%
-  \def\thethesisComitteeE{}%
+  \def\thethesisCommitteeE{}%
 \else
-  \def\thethesisComitteeE{#1~#2~\textsc{#3},~#4}%
+  \def\thethesisCommitteeE{#1~#2~\textsc{#3},~#4}%
 \fi
 }
-\newcommand{\thesisComitteeF}[4]{%
+\newcommand{\thesisCommitteeF}[4]{%
 \ifx&#3&%
-  \def\thethesisComitteeF{}%
+  \def\thethesisCommitteeF{}%
 \else
-  \def\thethesisComitteeF{#1~#2~\textsc{#3},~#4}%
+  \def\thethesisCommitteeF{#1~#2~\textsc{#3},~#4}%
 \fi
 }
 \newcommand{\thesisNumber}[1]{\def\thethesisNumber{#1}}
@@ -234,17 +234,17 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 
 \vspace*{0.4cm}
 
-\thethesisComitteeA
+\thethesisCommitteeA
 
-\thethesisComitteeB
+\thethesisCommitteeB
 
-\thethesisComitteeC
+\thethesisCommitteeC
 
-\thethesisComitteeD
+\thethesisCommitteeD
 
-\thethesisComitteeE
+\thethesisCommitteeE
 
-\thethesisComitteeF
+\thethesisCommitteeF
 
 \vfill
 
@@ -262,7 +262,8 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 \newpage
 }%
 \newcommand{\acknowledgements}[1]{\def\theacknowledgements{#1}}
-\newcommand{\abstract}[1]{\def\theabstract{#1}}
+\newcommand{\abstractEN}[1]{\def\theabstractEN{#1}}
+\newcommand{\abstractFR}[1]{\def\theabstractFR{#1}}
 \newcommand{\dedication}[1]{\def\thededication{#1}}
 \newcommand{\printfrontmatter}{%
 \frontmatter
@@ -281,9 +282,17 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
-\label{ch:abstract}
+\label{ch:abstractEN}
 \thispagestyle{plain}
-\theabstract
+\theabstractEN
+
+\newpage
+
+\chapter*{Résumé}
+\addcontentsline{toc}{chapter}{Résumé}
+\label{ch:abstractFR}
+\thispagestyle{plain}
+\theabstractFR
 
 \newpage\newpage
 

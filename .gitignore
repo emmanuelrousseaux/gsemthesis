@@ -32,3 +32,5 @@
 *.tdo
 .Rproj.user
 gsemthesis.Rproj
+todo.md~
+.Rhistory

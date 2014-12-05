@@ -1,0 +1,14 @@
+while ( development of the new feature ) {
+  edit .dtx file
+  run update.sh with pdflatex on the example file commented
+  run the example file
+}
+
+uncomment the "pdflatex on the example" line
+check the final .pdf file of the class
+check the final .pdf file of the example
+
+in the .dtx file:
+update the version of the class
+add a global \changes{} to specify the main changes of the new version (not linked to a specific macro, these changes have to be documented within the macro)
+update the compilation environment you used for compiling the class in the Section "Introduction"

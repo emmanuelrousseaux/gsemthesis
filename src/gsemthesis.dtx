@@ -20,7 +20,7 @@
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{gsemthesis}
 %<*class>
-    [2014/02/23 v0.1.4.0 .dtx gsemthesis file]
+    [2014/12/05 v0.9.0 .dtx gsemthesis file]
 %</class>
 %
 %<*driver>
@@ -60,7 +60,8 @@
 %   Right brace   \}     Tilde         \~}
 %
 %
-% \changes{v0.1}{2014/02/19}{First draft}
+% \changes{v0.1.0}{2014/02/19}{First draft}
+% \changes{v0.9.0}{2014/12/05}{Added French abstract, minor fixes}
 %
 % \GetFileInfo{gsemthesis.dtx}
 %
@@ -89,7 +90,7 @@
 % PhD thesis published within the Geneva School of Economics and Management have to follows some guidelines, especially for the cover page. The |gsemthesis| class is a \LaTeX{} template providing utilities to easily set up these guidelines in your thesis. In addition the class loads several usefull packages generally used when writing a thesis.
 % We recommend the user to have a look to the class definition in Section \ref{sec:classdef} to be aware of the list of packages that the class already includes. The Section \ref{sec:usage} details how to start with the |gsemthesis| class and how to configure your thesis. The user interested in customizing the class can read the Section \ref{sec:implementation} which details the full implementation of the class with usefull comments.
 % 
-% This class was successfully tested with pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian).
+% This class was successfully tested with pdfTeX 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian).
 % 
 % \section{Usage}
 % \label{sec:usage}
@@ -98,7 +99,8 @@
 %
 % \subsection{Installation}
 %
-% \emph{Forthcoming... depends on the release mode used.}
+% \subsubsection{Requirements}
+%
 %
 % \subsection{Getting started}
 %
@@ -139,20 +141,21 @@
 % You specify the specialization of your thesis with the |\thesisMention{|\emph{text}|}|.
 % \DescribeMacro{\thesisSupervisorA-B}
 % You can specify information about your thesis supervisor with the |\supervisorA{|\emph{title}|}{|\emph{firstname}|}{|\emph{lastname}|}| command. The \emph{title} field is usually filled with ``Prof.'' If you have a second supervisor your can use the |\supervisorB| command to provides her/his information.
-% \DescribeMacro{\thesisComitteeA-F}
-% You can specify information about members of your thesis comittee with the six |\thesisComitteeA-F{|\emph{title}|}{|\emph{firstname}|}{|\emph{lastname}|}{|\emph{role}|}| commands. With the \emph{role} field you specify the role played by this member in the committee. Generally you specify the role ``Chair'' in |\thesisComitteeA| and leave the field empty for others commands |\thesisComitteeB-F|.
+% \DescribeMacro{\thesisCommitteeA-F}
+% You can specify information about members of your thesis comittee with the six |\thesisCommitteeA-F{|\emph{title}|}{|\emph{firstname}|}{|\emph{lastname}|}{|\emph{role}|}| commands. With the \emph{role} field you specify the role played by this member in the committee. Generally you specify the role ``Chair'' in |\thesisCommitteeA| and leave the field empty for others commands |\thesisCommitteeB-F|.
 % \DescribeMacro{\thesisNumber}
 % When you submit your PhD thesis to the Press Service of the Unige, a unique thesis number will be assign to identify your thesis. This number has to be printed on the cover page. The |\thesisNumber{|\emph{text}|}| allows to print it.
 % 
 % \subsection{Configuring and printing the front matter pages}
 %
-% After the cover page the thesis has to provide in a specific order the acknowledgements, an abstract and an optional dedication. These elements are usually called the front matter. 
+% After the cover page the thesis has to provide in a the following order (1) the acknowledgements, (2,3) an abstract in both English and French (the order depending on the main language of your dissertation: if your dissertation is written in English you will start with the English abstract; if your dissertation is written in Frenchyou will start with the French abstract), (4) the table of contents, and (5) an optional dedication. These elements are usually called the front matter. 
 % \DescribeMacro{\printfrontmatter}
 % These pages will be printed by calling the |\printfrontmatter| command. The best place for this command is just after the |\printcoverpage| command.
 % \DescribeMacro{\acknowledgements}
-% \DescribeMacro{\abstract}
+% \DescribeMacro{\abstractEN}
+% \DescribeMacro{\abstractFR}
 % \DescribeMacro{\dedication}
-% To fill these pages use the commands |\acknowledgements{|\emph{text}|}|, |\abstract{|\emph{text}|}| and |\dedication{|\emph{text}|}|. We suggest you use these commands in the preambule of the document, just after the commands used to set the cover page.
+% To fill these pages use the commands |\acknowledgements{|\emph{text}|}|, |\abstractEN{|\emph{text}|}|, |\abstractFR{|\emph{text}|}|, and |\dedication{|\emph{text}|}|. We suggest you use these commands in the preambule of the document, just after the commands used to set the cover page.
 %
 % \subsection{Introduction and conclusion}
 %
@@ -363,7 +366,7 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 \def\thesisGradeLabel{for the grade of}
 \def\thesisGrade{PhD in Economics and Managment}
 \def\thesisMentionLabel{mention}
-\def\thesisComitteeLabel{Members of the dissertation committee :}
+\def\thesisCommitteeLabel{Members of the dissertation committee :}
 \def\thesisNumberLabel{Thesis number}
 %    \end{macrocode}
 %
@@ -414,79 +417,79 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\thesisComitteeA}
-% The thesisComitteeA macro
+% \begin{macro}{\thesisCommitteeA}
+% The thesisCommitteeA macro
 %    \begin{macrocode}
-\newcommand{\thesisComitteeA}[4]{%
+\newcommand{\thesisCommitteeA}[4]{%
 \ifx&#3&%
-  \def\thethesisComitteeA{}%
+  \def\thethesisCommitteeA{}%
 \else
-  \def\thethesisComitteeA{#1~#2~\textsc{#3},~#4}%
+  \def\thethesisCommitteeA{#1~#2~\textsc{#3},~#4}%
 \fi
 }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\thesisComitteeB}
-% The thesisComitteeB macro
+% \begin{macro}{\thesisCommitteeB}
+% The thesisCommitteeB macro
 %    \begin{macrocode}
-\newcommand{\thesisComitteeB}[4]{%
+\newcommand{\thesisCommitteeB}[4]{%
 \ifx&#3&%
-  \def\thethesisComitteeB{}%
+  \def\thethesisCommitteeB{}%
 \else
-  \def\thethesisComitteeB{#1~#2~\textsc{#3},~#4}%
+  \def\thethesisCommitteeB{#1~#2~\textsc{#3},~#4}%
 \fi
 }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\thesisComitteeC}
-% The thesisComitteeC macro
+% \begin{macro}{\thesisCommitteeC}
+% The thesisCommitteeC macro
 %    \begin{macrocode}
-\newcommand{\thesisComitteeC}[4]{%
+\newcommand{\thesisCommitteeC}[4]{%
 \ifx&#3&%
-  \def\thethesisComitteeC{}%
+  \def\thethesisCommitteeC{}%
 \else
-  \def\thethesisComitteeC{#1~#2~\textsc{#3},~#4}%
+  \def\thethesisCommitteeC{#1~#2~\textsc{#3},~#4}%
 \fi
 }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\thesisComitteeD}
-% The thesisComitteeD macro
+% \begin{macro}{\thesisCommitteeD}
+% The thesisCommitteeD macro
 %    \begin{macrocode}
-\newcommand{\thesisComitteeD}[4]{%
+\newcommand{\thesisCommitteeD}[4]{%
 \ifx&#3&%
-  \def\thethesisComitteeD{}%
+  \def\thethesisCommitteeD{}%
 \else
-  \def\thethesisComitteeD{#1~#2~\textsc{#3},~#4}%
+  \def\thethesisCommitteeD{#1~#2~\textsc{#3},~#4}%
 \fi
 }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\thesisComitteeE}
-% The thesisComitteeE macro
+% \begin{macro}{\thesisCommitteeE}
+% The thesisCommitteeE macro
 %    \begin{macrocode}
-\newcommand{\thesisComitteeE}[4]{%
+\newcommand{\thesisCommitteeE}[4]{%
 \ifx&#3&%
-  \def\thethesisComitteeE{}%
+  \def\thethesisCommitteeE{}%
 \else
-  \def\thethesisComitteeE{#1~#2~\textsc{#3},~#4}%
+  \def\thethesisCommitteeE{#1~#2~\textsc{#3},~#4}%
 \fi
 }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\thesisComitteeF}
-% The thesisComitteeF macro
+% \begin{macro}{\thesisCommitteeF}
+% The thesisCommitteeF macro
 %    \begin{macrocode}
-\newcommand{\thesisComitteeF}[4]{%
+\newcommand{\thesisCommitteeF}[4]{%
 \ifx&#3&%
-  \def\thethesisComitteeF{}%
+  \def\thethesisCommitteeF{}%
 \else
-  \def\thethesisComitteeF{#1~#2~\textsc{#3},~#4}%
+  \def\thethesisCommitteeF{#1~#2~\textsc{#3},~#4}%
 \fi
 }
 %    \end{macrocode}
@@ -559,17 +562,17 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 
 \vspace*{0.4cm}
 
-\thethesisComitteeA
+\thethesisCommitteeA
 
-\thethesisComitteeB
+\thethesisCommitteeB
 
-\thethesisComitteeC
+\thethesisCommitteeC
 
-\thethesisComitteeD
+\thethesisCommitteeD
 
-\thethesisComitteeE
+\thethesisCommitteeE
 
-\thethesisComitteeF
+\thethesisCommitteeF
 
 % \vspace*{0.4cm}
 \vfill
@@ -600,10 +603,17 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\abstract}
-% The |abstract| macro
+% \begin{macro}{\abstractEN}
+% The |abstractEN| macro
 %    \begin{macrocode}
-\newcommand{\abstract}[1]{\def\theabstract{#1}}
+\newcommand{\abstractEN}[1]{\def\theabstractEN{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\abstractFR}
+% The |abstractFR| macro
+%    \begin{macrocode}
+\newcommand{\abstractFR}[1]{\def\theabstractFR{#1}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -635,9 +645,17 @@ the {\large Geneva School of Economics and Management} \\[0.4em]%
 
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
-\label{ch:abstract}
+\label{ch:abstractEN}
 \thispagestyle{plain}
-\theabstract
+\theabstractEN
+
+\newpage
+
+\chapter*{Résumé}
+\addcontentsline{toc}{chapter}{Résumé}
+\label{ch:abstractFR}
+\thispagestyle{plain}
+\theabstractFR
 
 \newpage\newpage
 

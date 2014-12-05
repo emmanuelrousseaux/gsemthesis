@@ -1,0 +1,5 @@
+TO DO
+=====
+
+* doc: frequent errors, LaTeX Error: File `subfigure.sty` not found. => texlive-latex-extra
+* doc: sudo apt-get install biber
