@@ -1,5 +1,28 @@
 TO DO
 =====
 
-* doc: frequent errors, LaTeX Error: File `subfigure.sty` not found. => texlive-latex-extra
-* doc: sudo apt-get install biber
+.dtx
+----
+
+* cover page
+* option for setting the phdthesis mention
+* how to manually edit the thesis mention
+* 4a/b5
+
+User manual
+-----------
+
+* complete all existing sections
+* frequent errors, LaTeX Error: File `subfigure.sty` not found. => texlive-latex-extra
+* sudo apt-get install biber
+* english proofreview
+
+Readme
+------
+
+* explain how is organized the repository (directory example, src, dev, etc.)
+* write a mini getting started: 
+  * install texlive/miktex/mactex
+  * install biber
+  * install an IDE, we advice texmaker (for standard use) or Rstudio (for sweave/knitr integration)
+  * create a folder and put all example files in it. (remove the .gitignore in the example folder) download the user manual and follow requirements ()
