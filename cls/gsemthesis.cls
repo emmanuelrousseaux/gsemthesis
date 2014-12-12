@@ -20,7 +20,7 @@
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{gsemthesis}
     [2014/12/06 v0.9.1 .dtx gsemthesis file]
-\LoadClass[b5paper,10pt,twoside]{book}
+\LoadClass[a4paper,12pt,twoside]{book}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage{etoolbox}
