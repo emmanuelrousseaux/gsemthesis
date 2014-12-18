@@ -133,19 +133,23 @@ urlcolor=erblue%
 }
 \def\thesisLocationLabel{
 ~ \\[0.4em]%
-{\large Geneva School of Economics and Management} \\[0.4em]%
-  \iftoggle{fr}{
-    \emph{Université de Genève, Suisse}
-  }{
-    \emph{University of Geneva, Switzerland}
-  }
-}
-\def\thesisByLabel{} % depreciated
-\def\thesisDirectionLabel{} % depreciated
 \iftoggle{fr}{
-  \def\thesisGradeLabel{Pour le grade de}
+Une thèse soumise à la\\[0.2em]
+Geneva School of Economics and Management,\\[0.2em]
+Université de Genève, Suisse,\\[0.2em]
+pour l'obtention du\\[0.2em]
 }{
-  \def\thesisGradeLabel{For the grade of}
+A thesis submitted to the\\[0.2em]
+Geneva School of Economics and Management, \\[0.2em]
+University of Geneva, Switzerland,\\[0.2em]
+in fulfillment of the requirements for the degree of\\[0.2em]
+}
+}
+
+\iftoggle{fr}{
+  \def\thesisByLabel{par}
+}{
+  \def\thesisByLabel{by}
 }
 \def\thesisGrade{PhD in Economics and Managment}
 \def\thesisMentionLabel{mention}
@@ -239,11 +243,7 @@ urlcolor=erblue%
 
   {\large \theauthorFirstname~\theauthorLastname}
 
-  \vspace*{0.4cm}
-
-  \iftoggle{draft}{~}{\thesisDirectionLabel}
-
-  \vspace*{0.4cm}
+  \vspace*{0.8cm}
 
   \iftoggle{draft}{~}{\thethesisSupervisorA}
 
@@ -257,7 +257,7 @@ urlcolor=erblue%
     }{
       \emph{Draft}
     }
-  }{\thesisGradeLabel}
+  }{} % something to add there?
 
   \vspace*{0.4cm}
 
