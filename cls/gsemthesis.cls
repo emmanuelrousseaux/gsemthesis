@@ -90,6 +90,8 @@ urlcolor=erblue%
   \usepackage[english]{babel}
 }
 \usepackage{csquotes}
+\usepackage{datetime} % WAWA: to define \monthyeardate
+\newdateformat{monthyeardate}{\monthname[\THEMONTH] \THEYEAR}
 \usepackage[backend=biber,natbib=true,style=authoryear,sorting=nymdt]{biblatex}
 \DeclareSortingScheme{nymdt}{
   \sort{
@@ -126,11 +128,6 @@ urlcolor=erblue%
     \literal{0000}
   }
 }
-\iftoggle{fr}{
-  \def\thesisLabel{Thèse de Doctorat}
-}{
-  \def\thesisLabel{PhD Thesis}
-}
 \def\thesisLocationLabel{
 ~ \\[0.4em]%
 \iftoggle{fr}{
@@ -151,24 +148,25 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 }{
   \def\thesisByLabel{by}
 }
-\def\thesisGrade{PhD in Economics and Managment}
-\def\thesisMentionLabel{mention}
 \iftoggle{fr}{
-  \def\thesisCommitteeLabel{Membres du jury}
+  \def\thesisFieldLabel{Doctorat en}
 }{
-  \def\thesisCommitteeLabel{Members of the dissertation committee:}
+  \def\thesisFieldLabel{PhD in}
+}
+\iftoggle{fr}{
+  \def\thesisCommitteeLabel{Membres du jury:}
+}{
+  \def\thesisCommitteeLabel{Members of the thesis committee:}
 }
 \iftoggle{fr}{
   \def\thesisNumberLabel{Thèse no.}
 }{
   \def\thesisNumberLabel{Thesis No.}
 }
-\newcommand{\where}[1]{\def\thethesisWhere{#1}}
+
+
 \newcommand{\authorFirstname}[1]{\def\theauthorFirstname{#1}}
 \newcommand{\authorLastname}[1]{\def\theauthorLastname{\textsc{#1}}}
-\newcommand{\thesisSupervisorA}[3]{\def\thethesisSupervisorA{#1~#2~\textsc{#3}}}
-\newcommand{\thesisSupervisorB}[3]{\def\thethesisSupervisorB{#1~#2~\textsc{#3}}}
-\newcommand{\thesisMention}[1]{\def\thethesisMention{#1}}
 \newcommand{\thesisCommitteeA}[4]{%
 \ifx&#3&%
   \def\thethesisCommitteeA{}%
@@ -212,6 +210,7 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 \fi
 }
 \newcommand{\thesisNumber}[1]{\def\thethesisNumber{#1}}
+\newcommand{\thesisField}[1]{\def\thethesisField{#1}}
 \newcommand{\printcoverpage}{%
   \thispagestyle{empty}
   \begin{center}
@@ -227,29 +226,20 @@ in fulfillment of the requirements for the degree of\\[0.2em]
     }
   }
 
-  \vspace*{1.2cm}
+\vspace*{1.2cm}
 
-  {\Large \thesisLabel}
+\thesisByLabel
 
-  \vspace*{0.8cm}
+\vspace*{0.4cm}
 
-  \thesisLocationLabel
+{\large \theauthorFirstname~\theauthorLastname}
 
-  \vspace*{0.4cm}
+\vspace*{0.8cm}
 
-  \thesisByLabel
+\thesisLocationLabel
+\thesisFieldLabel{~}\thethesisField
 
-  \vspace*{0.4cm}
-
-  {\large \theauthorFirstname~\theauthorLastname}
-
-  \vspace*{0.8cm}
-
-  \iftoggle{draft}{~}{\thethesisSupervisorA}
-
-  \iftoggle{draft}{~}{\thethesisSupervisorB}
-
-  \vspace*{0.8cm}
+  \vfill % \vspace*{0.4cm}
 
   \iftoggle{draft}{
     \iftoggle{fr}{
@@ -259,37 +249,45 @@ in fulfillment of the requirements for the degree of\\[0.2em]
     }
   }{} % something to add there?
 
-  \vspace*{0.4cm}
-
-  \iftoggle{draft}{~}{\thesisGrade} \\
-  \iftoggle{draft}{~}{\thesisMentionLabel ~ \thethesisMention}
-
   \vspace*{0.8cm}
 
   \iftoggle{draft}{~}{\thesisCommitteeLabel}
 
-  \vspace*{0.4cm}
+\vspace*{0.2em}
 
-  \iftoggle{draft}{~}{\thethesisCommitteeA}
+\iftoggle{draft}{~}{\thethesisCommitteeA}
 
-  \iftoggle{draft}{~}{\thethesisCommitteeB}
+\vspace*{0.2em}
 
-  \iftoggle{draft}{~}{\thethesisCommitteeC}
+\iftoggle{draft}{~}{\thethesisCommitteeB}
 
-  \iftoggle{draft}{~}{\thethesisCommitteeD}
+\vspace*{0.2em}
 
-  \iftoggle{draft}{~}{\thethesisCommitteeE}
+\iftoggle{draft}{~}{\thethesisCommitteeC}
 
-  \iftoggle{draft}{~}{\thethesisCommitteeF}
+\vspace*{0.2em}
 
+\iftoggle{draft}{~}{\thethesisCommitteeD}
+
+\vspace*{0.2em}
+
+\iftoggle{draft}{~}{\thethesisCommitteeE}
+
+\vspace*{0.2em}
+
+\iftoggle{draft}{~}{\thethesisCommitteeF}
+
+\vspace*{1.4cm}
+
+  %%%
   % \vspace*{0.4cm}
-  \vfill
+  % \vfill
 
-  \iftoggle{draft}{~}{\thesisNumberLabel ~ \thethesisNumber}
+  \iftoggle{draft}{~}{\thesisNumberLabel{~}\thethesisNumber}
 
   \vspace*{0.1cm}
 
-  \iftoggle{draft}{~}{\thethesisWhere,} \@date
+  \iftoggle{draft}{\@date}{\monthyeardate\today} % WAWA: if draft then full date displayed, otherwise only month and year
 
   \vspace*{0.1cm}
 

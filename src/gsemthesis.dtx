@@ -353,6 +353,8 @@ urlcolor=erblue%
   \usepackage[english]{babel}
 }
 \usepackage{csquotes}
+\usepackage{datetime} % WAWA: to define \monthyeardate
+\newdateformat{monthyeardate}{\monthname[\THEMONTH] \THEYEAR}
 \usepackage[backend=biber,natbib=true,style=authoryear,sorting=nymdt]{biblatex}
 %    \end{macrocode}
 % We use the style authoryear to print authors and the year when citing a document in the text. We define a customized sorting style to sort the list of references (printed at the end of the document) according to this (ordered) attributes: name, year, month, day, and title. FIXME: remove the volume, or add the journal before the title.
@@ -398,11 +400,6 @@ urlcolor=erblue%
 % \subsubsection{System-level functions}
 %  The following commands define labels for the different parts of the cover page
 %    \begin{macrocode}
-\iftoggle{fr}{
-  \def\thesisLabel{Thèse de Doctorat}
-}{
-  \def\thesisLabel{PhD Thesis}
-}
 \def\thesisLocationLabel{
 ~ \\[0.4em]%
 \iftoggle{fr}{
@@ -423,18 +420,23 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 }{
   \def\thesisByLabel{by}
 }
-\def\thesisGrade{PhD in Economics and Managment}
-\def\thesisMentionLabel{mention}
+%\def\thesisField{PhD in Statistics}
 \iftoggle{fr}{
-  \def\thesisCommitteeLabel{Membres du jury}
+  \def\thesisFieldLabel{Doctorat en}
 }{
-  \def\thesisCommitteeLabel{Members of the dissertation committee:}
+  \def\thesisFieldLabel{PhD in}
+}
+\iftoggle{fr}{
+  \def\thesisCommitteeLabel{Membres du jury:}
+}{
+  \def\thesisCommitteeLabel{Members of the thesis committee:}
 }
 \iftoggle{fr}{
   \def\thesisNumberLabel{Thèse no.}
 }{
   \def\thesisNumberLabel{Thesis No.}
 }
+
 %    \end{macrocode}
 %
 %
@@ -445,10 +447,11 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 % \begin{macro}{\where}
 % The where macro.
 %    \begin{macrocode}
-\newcommand{\where}[1]{\def\thethesisWhere{#1}}
+% \newcommand{\where}[1]{\def\thethesisWhere{#1}}
 %    \end{macrocode}
 % \end{macro}
 % 
+
 % \begin{macro}{\authorFirstname}
 % The authorFirstname macro
 %    \begin{macrocode}
@@ -466,21 +469,21 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 % \begin{macro}{\thesisSupervisorA}
 % The SupervisorA macro
 %    \begin{macrocode}
-\newcommand{\thesisSupervisorA}[3]{\def\thethesisSupervisorA{#1~#2~\textsc{#3}}}
+%\newcommand{\thesisSupervisorA}[3]{\def\thethesisSupervisorA{#1~#2~\textsc{#3}}}
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\thesisSupervisorB}
 % The SupervisorB macro
 %    \begin{macrocode}
-\newcommand{\thesisSupervisorB}[3]{\def\thethesisSupervisorB{#1~#2~\textsc{#3}}}
+%\newcommand{\thesisSupervisorB}[3]{\def\thethesisSupervisorB{#1~#2~\textsc{#3}}}
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\thesisMention}
 % The thesisMention macro
 %    \begin{macrocode}
-\newcommand{\thesisMention}[1]{\def\thethesisMention{#1}}
+%\newcommand{\thesisMention}[1]{\def\thethesisMention{#1}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -568,6 +571,7 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 \newcommand{\thesisNumber}[1]{\def\thethesisNumber{#1}}
 %    \end{macrocode}
 % \end{macro}
+\newcommand{\thesisField}[1]{\def\thethesisField{#1}}
 % 
 % The cover page is created with the following code
 % \begin{macro}{\printcoverpage}
@@ -588,29 +592,20 @@ in fulfillment of the requirements for the degree of\\[0.2em]
     }
   }
   
-  \vspace*{1.2cm}
+\vspace*{1.2cm}
+
+\thesisByLabel
+
+\vspace*{0.4cm}
+
+{\large \theauthorFirstname~\theauthorLastname}
   
-  {\Large \thesisLabel}
+\vspace*{0.8cm}
+
+\thesisLocationLabel
+\thesisFieldLabel{~}\thethesisField
   
-  \vspace*{0.8cm}
-  
-  \thesisLocationLabel
-  
-  \vspace*{0.4cm}
-  
-  \thesisByLabel
-  
-  \vspace*{0.4cm}
-  
-  {\large \theauthorFirstname~\theauthorLastname}
-  
-  \vspace*{0.8cm}
-  
-  \iftoggle{draft}{~}{\thethesisSupervisorA}
-  
-  \iftoggle{draft}{~}{\thethesisSupervisorB}
-  
-  \vspace*{0.8cm}
+  \vfill % \vspace*{0.4cm}
   
   \iftoggle{draft}{
     \iftoggle{fr}{
@@ -620,38 +615,45 @@ in fulfillment of the requirements for the degree of\\[0.2em]
     }
   }{} % something to add there?
   
-  \vspace*{0.4cm}
-  
-  \iftoggle{draft}{~}{\thesisGrade} \\
-  \iftoggle{draft}{~}{\thesisMentionLabel ~ \thethesisMention}
-  
   \vspace*{0.8cm}
   
   \iftoggle{draft}{~}{\thesisCommitteeLabel}
+
+\vspace*{0.2em}
+
+\iftoggle{draft}{~}{\thethesisCommitteeA}
+
+\vspace*{0.2em}
+
+\iftoggle{draft}{~}{\thethesisCommitteeB}
+
+\vspace*{0.2em}
+
+\iftoggle{draft}{~}{\thethesisCommitteeC}
+
+\vspace*{0.2em}
+
+\iftoggle{draft}{~}{\thethesisCommitteeD}
+
+\vspace*{0.2em}
+
+\iftoggle{draft}{~}{\thethesisCommitteeE}
+
+\vspace*{0.2em}
+
+\iftoggle{draft}{~}{\thethesisCommitteeF}
+
+\vspace*{1.4cm}  
   
-  \vspace*{0.4cm}
-  
-  \iftoggle{draft}{~}{\thethesisCommitteeA}
-  
-  \iftoggle{draft}{~}{\thethesisCommitteeB}
-  
-  \iftoggle{draft}{~}{\thethesisCommitteeC}
-  
-  \iftoggle{draft}{~}{\thethesisCommitteeD}
-  
-  \iftoggle{draft}{~}{\thethesisCommitteeE}
-  
-  \iftoggle{draft}{~}{\thethesisCommitteeF}
-  
+  %%%
   % \vspace*{0.4cm}
-  \vfill
+  % \vfill
   
-  \iftoggle{draft}{~}{\thesisNumberLabel ~ \thethesisNumber}
+  \iftoggle{draft}{~}{\thesisNumberLabel{~}\thethesisNumber}
   
   \vspace*{0.1cm}
   
-  \iftoggle{draft}{~}{\thethesisWhere,} \@date
-  
+  \iftoggle{draft}{\@date}{\monthyeardate\today} % WAWA: if draft then full date displayed, otherwise only month and year
   
   \vspace*{0.1cm}
   
