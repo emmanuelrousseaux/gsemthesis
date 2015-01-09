@@ -19,7 +19,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{gsemthesis}
-    [2014/12/06 v0.9.1 .dtx gsemthesis file]
+    [2015/01/09 v0.9.2 .dtx gsemthesis file]
 \LoadClass[a4paper,12pt,twoside]{book}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -90,9 +90,10 @@ urlcolor=erblue%
   \usepackage[english]{babel}
 }
 \usepackage{csquotes}
-\usepackage{datetime} % WAWA: to define \monthyeardate
+\usepackage{datetime}
 \newdateformat{monthyeardate}{\monthname[\THEMONTH] \THEYEAR}
-\usepackage[backend=biber,natbib=true,style=authoryear,sorting=nymdt]{biblatex}
+\usepackage[backend=biber,natbib=true,style=authoryear-comp,sorting=nymdt,%
+maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 \DeclareSortingScheme{nymdt}{
   \sort{
     \field{presort}
@@ -129,18 +130,18 @@ urlcolor=erblue%
   }
 }
 \def\thesisLocationLabel{
-~ \\[0.4em]%
-\iftoggle{fr}{
-Une thèse soumise à la\\[0.2em]
-Geneva School of Economics and Management,\\[0.2em]
-Université de Genève, Suisse,\\[0.2em]
-pour l'obtention du\\[0.2em]
-}{
-A thesis submitted to the\\[0.2em]
-Geneva School of Economics and Management, \\[0.2em]
-University of Geneva, Switzerland,\\[0.2em]
-in fulfillment of the requirements for the degree of\\[0.2em]
-}
+  ~ \\[0.4em]%
+  \iftoggle{fr}{
+    Une thèse soumise à la\\[0.2em]
+    Geneva School of Economics and Management,\\[0.2em]
+    Université de Genève, Suisse,\\[0.2em]
+    pour l'obtention du\\[0.2em]
+  }{
+    A thesis submitted to the\\[0.2em]
+    Geneva School of Economics and Management, \\[0.2em]
+    University of Geneva, Switzerland,\\[0.2em]
+    in fulfillment of the requirements for the degree of\\[0.2em]
+  }
 }
 
 \iftoggle{fr}{
@@ -164,9 +165,9 @@ in fulfillment of the requirements for the degree of\\[0.2em]
   \def\thesisNumberLabel{Thesis No.}
 }
 
-
 \newcommand{\authorFirstname}[1]{\def\theauthorFirstname{#1}}
 \newcommand{\authorLastname}[1]{\def\theauthorLastname{\textsc{#1}}}
+\newcommand{\thesisField}[1]{\def\thethesisField{#1}}
 \newcommand{\thesisCommitteeA}[4]{%
 \ifx&#3&%
   \def\thethesisCommitteeA{}%
@@ -210,7 +211,6 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 \fi
 }
 \newcommand{\thesisNumber}[1]{\def\thethesisNumber{#1}}
-\newcommand{\thesisField}[1]{\def\thethesisField{#1}}
 \newcommand{\printcoverpage}{%
   \thispagestyle{empty}
   \begin{center}
@@ -226,20 +226,20 @@ in fulfillment of the requirements for the degree of\\[0.2em]
     }
   }
 
-\vspace*{1.2cm}
+  \vspace*{1.2cm}
 
-\thesisByLabel
+  \thesisByLabel
 
-\vspace*{0.4cm}
+  \vspace*{0.4cm}
 
-{\large \theauthorFirstname~\theauthorLastname}
+  {\large \theauthorFirstname~\theauthorLastname}
 
-\vspace*{0.8cm}
+  \vspace*{0.8cm}
 
-\thesisLocationLabel
-\thesisFieldLabel{~}\thethesisField
+  \thesisLocationLabel
+  \thesisFieldLabel{~}\thethesisField
 
-  \vfill % \vspace*{0.4cm}
+  \vfill
 
   \iftoggle{draft}{
     \iftoggle{fr}{
@@ -247,54 +247,49 @@ in fulfillment of the requirements for the degree of\\[0.2em]
     }{
       \emph{Draft}
     }
-  }{} % something to add there?
+  }
 
   \vspace*{0.8cm}
 
   \iftoggle{draft}{~}{\thesisCommitteeLabel}
 
-\vspace*{0.2em}
+  \vspace*{0.2em}
 
-\iftoggle{draft}{~}{\thethesisCommitteeA}
+  \iftoggle{draft}{~}{\thethesisCommitteeA}
 
-\vspace*{0.2em}
+  \vspace*{0.2em}
 
-\iftoggle{draft}{~}{\thethesisCommitteeB}
+  \iftoggle{draft}{~}{\thethesisCommitteeB}
 
-\vspace*{0.2em}
+  \vspace*{0.2em}
 
-\iftoggle{draft}{~}{\thethesisCommitteeC}
+  \iftoggle{draft}{~}{\thethesisCommitteeC}
 
-\vspace*{0.2em}
+  \vspace*{0.2em}
 
-\iftoggle{draft}{~}{\thethesisCommitteeD}
+  \iftoggle{draft}{~}{\thethesisCommitteeD}
 
-\vspace*{0.2em}
+  \vspace*{0.2em}
 
-\iftoggle{draft}{~}{\thethesisCommitteeE}
+  \iftoggle{draft}{~}{\thethesisCommitteeE}
 
-\vspace*{0.2em}
+  \vspace*{0.2em}
 
-\iftoggle{draft}{~}{\thethesisCommitteeF}
+  \iftoggle{draft}{~}{\thethesisCommitteeF}
 
-\vspace*{1.4cm}
-
-  %%%
-  % \vspace*{0.4cm}
-  % \vfill
+  \vspace*{1.4cm}
 
   \iftoggle{draft}{~}{\thesisNumberLabel{~}\thethesisNumber}
 
   \vspace*{0.1cm}
 
-  \iftoggle{draft}{\@date}{\monthyeardate\today} % WAWA: if draft then full date displayed, otherwise only month and year
+  \iftoggle{draft}{\@date}{\monthyeardate\today}
 
   \vspace*{0.1cm}
 
   \rule{\linewidth}{0.4pt}
   \end{center}
-
-}%
+}
 \newcommand{\acknowledgements}[1]{\def\theacknowledgements{#1}}
 \newcommand{\abstractEN}[1]{\def\theabstractEN{#1}}
 \newcommand{\abstractFR}[1]{\def\theabstractFR{#1}}

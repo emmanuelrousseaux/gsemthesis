@@ -20,11 +20,12 @@
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{gsemthesis}
 %<*class>
-    [2014/12/06 v0.9.1 .dtx gsemthesis file]
+    [2015/01/09 v0.9.2 .dtx gsemthesis file]
 %</class>
 %
 %<*driver>
 \documentclass{ltxdoc}
+\usepackage[utf8]{inputenc}
 \RequirePackage[top=2.5cm, bottom=2.5cm, left=4.5cm, right=3.5cm]{geometry}
 \RequirePackage{xcolor}
 \definecolor{erblue}{HTML}{126199}
@@ -63,6 +64,7 @@
 % \changes{v0.1.0}{2014/02/19}{First draft}
 % \changes{v0.9.0}{2014/12/05}{Added French abstract, minor fixes}
 % \changes{v0.9.1}{2014/12/06}{French option, draft option, update frontmatter, update backmatter, page numbering at the top of the page, refined cover page}
+% \changes{v0.9.2}{2015/01/09}{rewriting of the cover page, improve bibliography management, and a lot of minor fixes}
 %
 % \GetFileInfo{gsemthesis.dtx}
 %
@@ -129,13 +131,12 @@
 % \subsection{Configuring and printing the cover page}
 %
 % \DescribeMacro{\printcoverpage}
-% The class provides the GSEM PhD thesis cover page ready to be printed. You can ask to print it by calling |\printcoverpage| just after the |\begin{document}|. Before printing the cover page you first need to configure it with your thesis details: title, author, supervisors, comittee, etc.
+% The class provides the GSEM PhD thesis cover page ready to be printed. You can ask to print it by calling |\printcoverpage| just after the |\begin{document}|. Before printing the cover page you first need to configure it with your thesis details: title, author, supervisors, committee, etc.
 % The minimal example becomes:
 % \begin{verbatim}
 % \documentclass{gsemthesis}
 % \title{My PhD thesis}
 % \date{\today}
-% \where{Geneva}
 % \thesisNumber{480}
 % ... (others configuration commands)
 % \begin{document}
@@ -146,19 +147,16 @@
 % \newpage
 % \DescribeMacro{\title}
 % \DescribeMacro{\date}
-% \DescribeMacro{\where}
-% The class use the classical |\title{|\emph{text}|}| and |\date{|\emph{text}|}| commands of the |book| class to set the title and the date. We add a command |\where{|\emph{text}|}| to specify where the thesis was defended.
+% The class uses the classical |\title{|\emph{text}|}| and |\date{|\emph{text}|}| commands of the |book| class to set the title and the date.
 % \DescribeMacro{\authorFirstname}
 % \DescribeMacro{\authorLastname}
 % Instead of using the |\author{|\emph{text}|}| command we provide the two commands |\authorFirstname{|\emph{text}|}| and |\authorLastname{|\emph{text}|}| to separately handle the firstname and the lastname.
-% \DescribeMacro{\thesisMention}
-% You specify the specialization of your thesis with the |\thesisMention{|\emph{text}|}|.
-% \DescribeMacro{\thesisSupervisorA-B}
-% You can specify information about your thesis supervisor with the |\supervisorA{|\emph{title}|}{|\emph{firstname}|}{|\emph{lastname}|}| command. The \emph{title} field is usually filled with ``Prof.'' If you have a second supervisor your can use the |\supervisorB| command to provides her/his information.
+% \DescribeMacro{\thesisField}
+% You specify the PhD you are enrolled in with the |\thesisField{|\emph{text}|}|, among others: Economics, Management, Statistics, Information Systems. Please contact the scientific committee of your PhD to obtain the applicable title.
 % \DescribeMacro{\thesisCommitteeA-F}
-% You can specify information about members of your thesis comittee with the six |\thesisCommitteeA-F{|\emph{title}|}{|\emph{firstname}|}{|\emph{lastname}|}{|\emph{role}|}| commands. With the \emph{role} field you specify the role played by this member in the committee. Generally you specify the role ``Chair'' in |\thesisCommitteeA| and leave the field empty for others commands |\thesisCommitteeB-F|.
+% You can specify information about members of your thesis committee with the six |\thesisCommitteeA-F{|\emph{title}|}{|\emph{firstname}|}{|\emph{lastname}|}{|\emph{role}|}| commands. With the \emph{role} field you specify the role played by this member in the committee and his/her affiliation. Generally you specify the role ``Chair'' in |\thesisCommitteeA|, the role ``adviser'' for your adviser/co-advisers, and leave the field empty for the other members.
 % \DescribeMacro{\thesisNumber}
-% When you submit your PhD thesis to the Press Service of the Unige, a unique thesis number will be assign to identify your thesis. This number has to be printed on the cover page. The |\thesisNumber{|\emph{text}|}| allows to print it.
+% When your manuscript has been accepted by your jury, the Faculty attributes a unique thesis number which has to be printed on the cover page. The |\thesisNumber{|\emph{text}|}| allows to supply it.
 % 
 % \subsection{Configuring and printing the front matter pages}
 %
@@ -344,21 +342,32 @@ urlcolor=erblue%
     \if@twocolumn\hbox{}\newpage\fi\fi\fi}
 \clearpage{\pagestyle{empty}\cleardoublepage}
 %    \end{macrocode}
-% \subsection{Bibliography management}
-% We use biblatex/biber to process the bibliography
+% We define the default language of the document.
 %    \begin{macrocode}
 \iftoggle{fr}{
   \usepackage[francais]{babel}
 }{
   \usepackage[english]{babel}
 }
-\usepackage{csquotes}
-\usepackage{datetime} % WAWA: to define \monthyeardate
-\newdateformat{monthyeardate}{\monthname[\THEMONTH] \THEYEAR}
-\usepackage[backend=biber,natbib=true,style=authoryear,sorting=nymdt]{biblatex}
 %    \end{macrocode}
-% We use the style authoryear to print authors and the year when citing a document in the text. We define a customized sorting style to sort the list of references (printed at the end of the document) according to this (ordered) attributes: name, year, month, day, and title. FIXME: remove the volume, or add the journal before the title.
-% And we define the following sorting scheme
+% This package provides the commands |\og| and |\fg| for correctly handling French quotes.
+%    \begin{macrocode}
+\usepackage{csquotes}
+%    \end{macrocode}
+% We define the date format for the cover page (non-draft mode).
+%    \begin{macrocode}
+\usepackage{datetime}
+\newdateformat{monthyeardate}{\monthname[\THEMONTH] \THEYEAR}
+%    \end{macrocode}
+%
+% \subsection{Bibliography management}
+% We use biblatex/biber to process the bibliography with the following settings: (1) citations with more than two authors will always be writen as ``First author et al.'', (2) this ``et al.'' rule is applied even if it leads to ambiguities between long list of authors with the same first author. 
+%    \begin{macrocode}
+\usepackage[backend=biber,natbib=true,style=authoryear-comp,sorting=nymdt,%
+maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
+%    \end{macrocode}
+% We use the style authoryear to print authors and the year when citing a document in the text. We define a customized sorting style to sort the list of references (printed at the end of the document) according to this (ordered) attributes: name, year, month, day, and title.
+% We define the following sorting scheme:
 %    \begin{macrocode}
 \DeclareSortingScheme{nymdt}{
   \sort{
@@ -401,18 +410,18 @@ urlcolor=erblue%
 %  The following commands define labels for the different parts of the cover page
 %    \begin{macrocode}
 \def\thesisLocationLabel{
-~ \\[0.4em]%
-\iftoggle{fr}{
-Une thèse soumise à la\\[0.2em]
-Geneva School of Economics and Management,\\[0.2em]
-Université de Genève, Suisse,\\[0.2em]
-pour l'obtention du\\[0.2em]
-}{
-A thesis submitted to the\\[0.2em]
-Geneva School of Economics and Management, \\[0.2em]
-University of Geneva, Switzerland,\\[0.2em]
-in fulfillment of the requirements for the degree of\\[0.2em]
-}
+  ~ \\[0.4em]%
+  \iftoggle{fr}{
+    Une thèse soumise à la\\[0.2em]
+    Geneva School of Economics and Management,\\[0.2em]
+    Université de Genève, Suisse,\\[0.2em]
+    pour l'obtention du\\[0.2em]
+  }{
+    A thesis submitted to the\\[0.2em]
+    Geneva School of Economics and Management, \\[0.2em]
+    University of Geneva, Switzerland,\\[0.2em]
+    in fulfillment of the requirements for the degree of\\[0.2em]
+  }
 }
 
 \iftoggle{fr}{
@@ -420,7 +429,6 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 }{
   \def\thesisByLabel{by}
 }
-%\def\thesisField{PhD in Statistics}
 \iftoggle{fr}{
   \def\thesisFieldLabel{Doctorat en}
 }{
@@ -444,51 +452,29 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 % 
 % Set up of the cover page and assimilated functions.
 %
-% \begin{macro}{\where}
-% The where macro.
-%    \begin{macrocode}
-% \newcommand{\where}[1]{\def\thethesisWhere{#1}}
-%    \end{macrocode}
-% \end{macro}
-% 
-
 % \begin{macro}{\authorFirstname}
-% The authorFirstname macro
+% Set up the |\theauthorFirstname| variable.
 %    \begin{macrocode}
 \newcommand{\authorFirstname}[1]{\def\theauthorFirstname{#1}}
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\authorLastname}
-% The authorLastname macro
+% Set up the |\theauthorLastname| variable.
 %    \begin{macrocode}
 \newcommand{\authorLastname}[1]{\def\theauthorLastname{\textsc{#1}}}
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\thesisSupervisorA}
-% The SupervisorA macro
+% \begin{macro}{\thesisField}
+% Set up the |\thethesisField| variable.
 %    \begin{macrocode}
-%\newcommand{\thesisSupervisorA}[3]{\def\thethesisSupervisorA{#1~#2~\textsc{#3}}}
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\thesisSupervisorB}
-% The SupervisorB macro
-%    \begin{macrocode}
-%\newcommand{\thesisSupervisorB}[3]{\def\thethesisSupervisorB{#1~#2~\textsc{#3}}}
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\thesisMention}
-% The thesisMention macro
-%    \begin{macrocode}
-%\newcommand{\thesisMention}[1]{\def\thethesisMention{#1}}
+\newcommand{\thesisField}[1]{\def\thethesisField{#1}}
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\thesisCommitteeA}
-% The thesisCommitteeA macro
+% Set up the |\thethesisCommitteeA| variable.
 %    \begin{macrocode}
 \newcommand{\thesisCommitteeA}[4]{%
 \ifx&#3&%
@@ -501,7 +487,7 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 % \end{macro}
 %
 % \begin{macro}{\thesisCommitteeB}
-% The thesisCommitteeB macro
+% Set up the |\thethesisCommitteeB| variable.
 %    \begin{macrocode}
 \newcommand{\thesisCommitteeB}[4]{%
 \ifx&#3&%
@@ -514,7 +500,7 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 % \end{macro}
 %
 % \begin{macro}{\thesisCommitteeC}
-% The thesisCommitteeC macro
+% Set up the |\thethesisCommitteeC| variable.
 %    \begin{macrocode}
 \newcommand{\thesisCommitteeC}[4]{%
 \ifx&#3&%
@@ -527,7 +513,7 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 % \end{macro}
 %
 % \begin{macro}{\thesisCommitteeD}
-% The thesisCommitteeD macro
+% Set up the |\thethesisCommitteeD| variable.
 %    \begin{macrocode}
 \newcommand{\thesisCommitteeD}[4]{%
 \ifx&#3&%
@@ -540,7 +526,7 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 % \end{macro}
 %
 % \begin{macro}{\thesisCommitteeE}
-% The thesisCommitteeE macro
+% Set up the |\thethesisCommitteeE| variable.
 %    \begin{macrocode}
 \newcommand{\thesisCommitteeE}[4]{%
 \ifx&#3&%
@@ -553,7 +539,7 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 % \end{macro}
 %
 % \begin{macro}{\thesisCommitteeF}
-% The thesisCommitteeF macro
+% Set up the |\thethesisCommitteeF| variable.
 %    \begin{macrocode}
 \newcommand{\thesisCommitteeF}[4]{%
 \ifx&#3&%
@@ -566,13 +552,11 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 % \end{macro}
 %
 % \begin{macro}{\thesisNumber}
-% The thesisNumber macro
+% Set up the |\thethesisNumber| variable.
 %    \begin{macrocode}
 \newcommand{\thesisNumber}[1]{\def\thethesisNumber{#1}}
 %    \end{macrocode}
 % \end{macro}
-\newcommand{\thesisField}[1]{\def\thethesisField{#1}}
-% 
 % The cover page is created with the following code
 % \begin{macro}{\printcoverpage}
 % Print the cover page of the thesis.
@@ -592,20 +576,20 @@ in fulfillment of the requirements for the degree of\\[0.2em]
     }
   }
   
-\vspace*{1.2cm}
-
-\thesisByLabel
-
-\vspace*{0.4cm}
-
-{\large \theauthorFirstname~\theauthorLastname}
+  \vspace*{1.2cm}
   
-\vspace*{0.8cm}
-
-\thesisLocationLabel
-\thesisFieldLabel{~}\thethesisField
+  \thesisByLabel
   
-  \vfill % \vspace*{0.4cm}
+  \vspace*{0.4cm}
+  
+  {\large \theauthorFirstname~\theauthorLastname}
+    
+  \vspace*{0.8cm}
+  
+  \thesisLocationLabel
+  \thesisFieldLabel{~}\thethesisField
+  
+  \vfill
   
   \iftoggle{draft}{
     \iftoggle{fr}{
@@ -613,82 +597,77 @@ in fulfillment of the requirements for the degree of\\[0.2em]
     }{
       \emph{Draft}
     }
-  }{} % something to add there?
+  }
   
   \vspace*{0.8cm}
   
   \iftoggle{draft}{~}{\thesisCommitteeLabel}
 
-\vspace*{0.2em}
-
-\iftoggle{draft}{~}{\thethesisCommitteeA}
-
-\vspace*{0.2em}
-
-\iftoggle{draft}{~}{\thethesisCommitteeB}
-
-\vspace*{0.2em}
-
-\iftoggle{draft}{~}{\thethesisCommitteeC}
-
-\vspace*{0.2em}
-
-\iftoggle{draft}{~}{\thethesisCommitteeD}
-
-\vspace*{0.2em}
-
-\iftoggle{draft}{~}{\thethesisCommitteeE}
-
-\vspace*{0.2em}
-
-\iftoggle{draft}{~}{\thethesisCommitteeF}
-
-\vspace*{1.4cm}  
+  \vspace*{0.2em}
   
-  %%%
-  % \vspace*{0.4cm}
-  % \vfill
+  \iftoggle{draft}{~}{\thethesisCommitteeA}
+  
+  \vspace*{0.2em}
+  
+  \iftoggle{draft}{~}{\thethesisCommitteeB}
+  
+  \vspace*{0.2em}
+  
+  \iftoggle{draft}{~}{\thethesisCommitteeC}
+  
+  \vspace*{0.2em}
+  
+  \iftoggle{draft}{~}{\thethesisCommitteeD}
+  
+  \vspace*{0.2em}
+  
+  \iftoggle{draft}{~}{\thethesisCommitteeE}
+  
+  \vspace*{0.2em}
+  
+  \iftoggle{draft}{~}{\thethesisCommitteeF}
+  
+  \vspace*{1.4cm}  
   
   \iftoggle{draft}{~}{\thesisNumberLabel{~}\thethesisNumber}
   
   \vspace*{0.1cm}
   
-  \iftoggle{draft}{\@date}{\monthyeardate\today} % WAWA: if draft then full date displayed, otherwise only month and year
+  \iftoggle{draft}{\@date}{\monthyeardate\today}
   
   \vspace*{0.1cm}
   
   \rule{\linewidth}{0.4pt}
   \end{center}
-  
-}%
+}
 %    \end{macrocode}
 % \end{macro}
 %
 % \subsection{Front matter}
 %
 % \begin{macro}{\acknowledgements}
-% The |acknowledgements| macro
+% Set up the |\theacknowledgements| variable.
 %    \begin{macrocode}
 \newcommand{\acknowledgements}[1]{\def\theacknowledgements{#1}}
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\abstractEN}
-% The |abstractEN| macro
+% Set up the |\theabstractEN| variable.
 %    \begin{macrocode}
 \newcommand{\abstractEN}[1]{\def\theabstractEN{#1}}
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\abstractFR}
-% The |abstractFR| macro
+% Set up the |\theabstractFR| variable.
 %    \begin{macrocode}
 \newcommand{\abstractFR}[1]{\def\theabstractFR{#1}}
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\dedication}
-% The |dedication| macro
+% Set up the |\thededication| variable.
 %    \begin{macrocode}
 \newcommand{\dedication}[1]{\def\thededication{#1}}
 %    \end{macrocode}
@@ -794,7 +773,7 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 %
 % \subsection{Miscellaneous}
 % \begin{environment}{itemize*}
-% This is a dummy environment.  If it did anything, we'd describe its
+% A narrowed version of the |itemize| environment.
 % implementation here.
 %    \begin{macrocode}
 \newenvironment{itemize*}%
@@ -808,7 +787,7 @@ in fulfillment of the requirements for the degree of\\[0.2em]
 % \end{environment}
 %
 % \newpage
-% \section{Complete example}
+% \section{Minimal working example}
 % \begin{verbatim}
 % Forthcoming
 % \end{verbatim}
