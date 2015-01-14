@@ -409,16 +409,18 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \subsubsection{System-level functions}
 %  The following commands define labels for the different parts of the cover page
 %    \begin{macrocode}
+\def\theFaculty{Geneva School of Economics and Management}
+
 \def\thesisLocationLabel{
   ~ \\[0.4em]%
   \iftoggle{fr}{
     Une thèse soumise à la\\[0.2em]
-    Geneva School of Economics and Management,\\[0.2em]
+    \theFaculty\\[0.2em]
     Université de Genève, Suisse,\\[0.2em]
     pour l'obtention du\\[0.2em]
   }{
     A thesis submitted to the\\[0.2em]
-    Geneva School of Economics and Management, \\[0.2em]
+    \theFaculty, \\[0.2em]
     University of Geneva, Switzerland,\\[0.2em]
     in fulfillment of the requirements for the degree of\\[0.2em]
   }
