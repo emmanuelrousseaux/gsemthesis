@@ -4,8 +4,6 @@ TO DO
 CTAN
 ----
 
-* decide how to provide the example.
-
 .dtx
 ----
 
@@ -22,21 +20,14 @@ CTAN
 User manual
 -----------
 
-* complete all existing sections
 * frequent errors, LaTeX Error: File `subfigure.sty` not found. => texlive-latex-extra
-* sudo apt-get install biber
 * english proofreview
 
 Readme
 ------
 
 * explain how is organized the repository (directory example, src, dev, etc.)
-* write a mini getting started: 
-  * install texlive/miktex/mactex
-  * install biber
-  * install an IDE, we advice texmaker (for standard use) or Rstudio (for sweave/knitr integration)
-  * create a folder and put all example files in it. (remove the .gitignore in the example folder) download the user manual and follow requirements ()
-
+* give the link to the official repository
 
 FR/EN management
 ----------------
