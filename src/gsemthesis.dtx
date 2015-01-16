@@ -95,7 +95,7 @@
 % 
 % \medskip
 %
-% This class was successfully tested with pdfTeX 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian).
+% This class was successfully tested with pdfTeX 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) and with pdfTeX Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Windows).
 %
 % \medskip
 %
@@ -178,7 +178,42 @@
 %
 % \subsection{Bibliography}
 %
-% \emph{Forthcoming} (to discuss: use biblatex, require biber, author-year style, sorting scheme)
+% The |gsemthesis| class use the package |biblatex| with the backend biber instead of the package |bibtex| to produce the bibliography. The package |biblatex| is installed by default with any recent version of TeX Live\footnote{On Ubuntu/Debian, you may have to install it manually: sudo apt-get install texlive-bibtex-extra biber} (full installation) and MiKTeX, but you must first configure your TeX Editor to use it.
+%
+% \subsubsection{Configure TeXstudio to run biber}
+%
+% In the TeXstudio preferences (click on Options $\rightarrow$ Configure TeXstudio), choose the ’Build’ tab and modify the ’Default Bibliography’ to ’Biber’.
+%
+% \medskip
+%
+% Run ’Build \& View’ from the ’Tools’ menu (or press the two green arrows icon), which will create a PDF but with the bibliography not completed.
+%
+% \medskip
+%
+% Run ’Bibliography’ from the ’Tools’ menu.
+%
+% \medskip
+%
+% Run ’Build \& View’ again to create a PDF with the bibliography.
+%
+% \medskip
+%
+% \subsubsection{Configure Texmaker to run biber}
+%
+% In the Texmaker preferences (click on Options $\rightarrow$ Configure Texmaker), choose the ’Commands’ tab and replace |bibtex %| by |biber %| in the field |Bib(la)tex|. You may also browse to the |biber.exe| using the folder icon on the side.
+%
+% \medskip
+% Choose the ’Quick Build’ tab and select the second option |PdfLaTeX + Bib(la)tex +| |PdfLaTex (x2) + View Pdf|
+%
+% \medskip
+%
+% Now your ’Quick Build’ button will create a PDF with the bibliography.
+%
+% \medskip
+%
+% \subsubsection{Basic commands}
+%
+% To add a bibliography into your document, you have to define your bib file in the pre-amble of your tex file: |\addbibresource{literature-review-topic1.bib}| Then, at the end of your document, the command |\printbibliography| will create the biblography.
 %
 % \subsection{\emph{Draft} mode}
 %
