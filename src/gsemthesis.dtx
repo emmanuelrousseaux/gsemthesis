@@ -73,12 +73,12 @@
 %
 % \title{The \textsf{gsemthesis} class\thanks{This document
 %   corresponds to \textsf{gsemthesis}~\fileversion, dated \filedate.}}
-% \author{Emmanuel Rousseaux \\ \url{emmanuel.rousseaux+gsemthesis@gmail.com}}
+% \author{Emmanuel Rousseaux \\ \url{emmanuel.rousseaux@gmail.com}}
 %
 % \maketitle
 %
 % \begin{abstract}
-% This article introduces the |gsemthesis| class for \LaTeX. The |gsemthesis| class is a Phd thesis  template for the Geneva School of Economics and Management (GSEM), University of Geneva, Switzerland. The class provides utilities to easily set up the cover page, the front matter pages, the pages headers, etc. with respect to the official guidelines of the GSEM Faculty for writing PhD thesis.
+% This article introduces the |gsemthesis| class for \LaTeX. The |gsemthesis| class is a PhD thesis  template for the Geneva School of Economics and Management (GSEM), University of Geneva, Switzerland. The class provides utilities to easily set up the cover page, the front matter pages, the pages headers, etc. with respect to the official guidelines of the GSEM Faculty for writing PhD dissertations.
 % This class is released under the LaTeX Project Public License version 1.3c.
 % \end{abstract}
 %
@@ -144,7 +144,7 @@
 % Here is it, I started my PhD!
 % \end{document}
 % \end{verbatim}%
-% \newpage
+% 
 % \DescribeMacro{\title}
 % \DescribeMacro{\date}
 % The class uses the classical |\title{|\emph{text}|}| and |\date{|\emph{text}|}| commands of the |book| class to set the title and the date.
@@ -178,42 +178,39 @@
 %
 % \subsection{Bibliography}
 %
-% The |gsemthesis| class use the package |biblatex| with the backend biber instead of the package |bibtex| to produce the bibliography. The package |biblatex| is installed by default with any recent version of TeX Live\footnote{On Ubuntu/Debian, you may have to install it manually: sudo apt-get install texlive-bibtex-extra biber} (full installation) and MiKTeX, but you must first configure your TeX Editor to use it.
+% To produce the bibliography, the |gsemthesis| class uses the package |biblatex| with |biber| in backend instead of the package |bibtex|. The package |biblatex| is installed by default with any recent version of TeX Live\footnote{On Ubuntu/Debian, you may have to install it manually: sudo apt-get install texlive-bibtex-extra biber} (full installation) and MiKTeX, but you must first configure your TeX Editor to use it.
 %
 % \subsubsection{Configure TeXstudio to run biber}
 %
-% In the TeXstudio preferences (click on Options $\rightarrow$ Configure TeXstudio), choose the ’Build’ tab and modify the ’Default Bibliography’ to ’Biber’.
+% In the TeXstudio preferences (click on Options $\rightarrow$ Configure TeXstudio), choose the `Build' tab and modify the `Default Bibliography’ to `Biber’.
 %
 % \medskip
 %
-% Run ’Build \& View’ from the ’Tools’ menu (or press the two green arrows icon), which will create a PDF but with the bibliography not completed.
+% \noindent Run `Build \& View’ from the `Tools’ menu (or press the two green arrows icon), which will create a PDF but with the bibliography not completed.
 %
 % \medskip
 %
-% Run ’Bibliography’ from the ’Tools’ menu.
+% \noindent Run `Bibliography’ from the `Tools’ menu.
 %
 % \medskip
 %
-% Run ’Build \& View’ again to create a PDF with the bibliography.
-%
-% \medskip
+% \noindent Run `Build \& View’ again to create a PDF with the bibliography.
 %
 % \subsubsection{Configure Texmaker to run biber}
 %
-% In the Texmaker preferences (click on Options $\rightarrow$ Configure Texmaker), choose the ’Commands’ tab and replace |bibtex %| by |biber %| in the field |Bib(la)tex|. You may also browse to the |biber.exe| using the folder icon on the side.
-%
-% \medskip
-% Choose the ’Quick Build’ tab and select the second option |PdfLaTeX + Bib(la)tex +| |PdfLaTex (x2) + View Pdf|
+% In the Texmaker preferences (click on Options $\rightarrow$ Configure Texmaker), choose the `Commands’ tab and replace |bibtex %| by |biber %| in the field |Bib(la)tex|. On Windows, you may also browse to the |biber.exe| using the folder icon on the side.
 %
 % \medskip
 %
-% Now your ’Quick Build’ button will create a PDF with the bibliography.
+% \noindent Choose the `Quick Build’ tab and select the second option |PdfLaTeX + Bib(la)tex +| |PdfLaTex (x2) + View Pdf|
 %
 % \medskip
+%
+% \noindent Now your `Quick Build’ button will create a PDF with the bibliography.
 %
 % \subsubsection{Basic commands}
 %
-% To add a bibliography into your document, you have to define your bib file in the pre-amble of your tex file: |\addbibresource{literature-review-topic1.bib}| Then, at the end of your document, the command |\printbibliography| will create the biblography.
+% To add a bibliography into your document, you have to define your bib file in the preamble of your tex file: |\addbibresource{literature-review-topic1.bib}| Then, at the end of your document, the command |\printbibliography| will create the biblography.
 %
 % \subsection{\emph{Draft} mode}
 %
