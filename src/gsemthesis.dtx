@@ -82,7 +82,7 @@
 % This class is released under the LaTeX Project Public License version 1.3c.
 % \end{abstract}
 %
-% \bigskip
+% \newpage
 %
 % \tableofcontents
 %
@@ -100,26 +100,37 @@
 % \medskip
 %
 % This class has been written by Emmanuel \textsc{Rousseaux} with contributions from William \textsc{Aeberhard} and Tuan \textsc{Nguyen}.
+%
+% \medskip
+%
+% The development version is hosted on GitHub\footnote{\url{https://github.com/emmanuelrousseaux/gsemthesis}}. If you are interested in contributing to this class or if you want to beta test latest versions, please visit the repository.
 % 
 % \section{Usage}
 % \label{sec:usage}
 % 
 % This Section introduces the use of the |gsemthesis| class. All macros and environments the class provides are described. We assume the user is already familiar with \LaTeX.
 %
-% \subsection{Installation}
+% \subsection{Requirements}
 %
-% \subsubsection{Requirements}
+% The class requires a recent version of either TeX Live ($\ge$ 2013) or MikTeX ($\ge$ 2.9.5x). As the class preload some common packages (see Section \ref{sec:implementation} for the detailed list), we suggest to use install your \LaTeX{} distribution in full mode to make things working out-of-the-box.
+% 
+% \medskip
 %
+% \noindent The class uses biblatex/biber for managing the bibliography. Please refer to the Section \ref{sec:bibliography} for configuring your editor to use it.
 %
 % \subsection{Getting started}
 %
-% To use the class start your document with the command |\documentclass{gsemthesis}|. A minimal file is:
+% To use the class start your document with the command |\documentclass{gsemthesis}|. A minimal document is:
 % \begin{verbatim}
 % \documentclass{gsemthesis}
 % \begin{document}
+% \printcoverpage
+% \newpage
 % Here is it, I started my PhD!
 % \end{document}
 % \end{verbatim}
+%
+% \noindent The Section \ref{sec:example} provides a minimal working example you can copy/paste for starting your dissertation. The commands used are explained in the following sections.
 %
 % \subsection{Writing the dissertation in French}
 %
@@ -165,6 +176,7 @@
 % Therefore, instead of using |\chapter{introduction}| (respectively |\chapter{conclusion}|) to start a such chapter we provide the function |\startintroduction| (respectively |\startconclusion|) to easily start the chapter with a correct handling of the table of contents and page headers.
 %
 % \subsection{Bibliography}
+% \label{sec:bibliography}
 %
 % To produce the bibliography, the |gsemthesis| class uses the package |biblatex| with |biber| in backend instead of the package |bibtex|. The package |biblatex| is installed by default with any recent version of TeX Live\footnote{On Ubuntu/Debian, you may have to install it manually: sudo apt-get install texlive-bibtex-extra biber} (full installation) and MiKTeX, but you must first configure your TeX Editor to use it.
 %
@@ -198,7 +210,7 @@
 %
 % \subsubsection{Configure Rstudio/knitr to run biber}
 %
-% In Rstudio/knitr you have to include the following chunk in your |.Rnw| document.
+% In Rstudio/knitr you have to include the following chunk in your |.Rnw| document:
 %
 % \begin{verbatim}
 % <<tex-setup, include=FALSE, cache=FALSE, echo=FALSE>>=
@@ -838,6 +850,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 %
 % \newpage
 % \section{Minimal working example}
+% \label{sec:example}
 % \begin{verbatim}
 % \documentclass{gsemthesis}
 % 
