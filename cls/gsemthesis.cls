@@ -8,7 +8,7 @@
 %% 
 %% This is a generated file.
 %% 
-%% Copyright (C) 2014 by Emmanuel Rousseaux <emmanuel.rousseaux+gsemthesis@gmail.com>
+%% Copyright (C) 2015 by Emmanuel Rousseaux <emmanuel.rousseaux@gmail.com>
 %% 
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, version 1.3c
@@ -19,7 +19,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{gsemthesis}
-    [2015/01/09 v0.9.2 .dtx gsemthesis file]
+    [2015/01/16 v0.9.3 .dtx gsemthesis file]
 \LoadClass[a4paper,12pt,twoside]{book}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
