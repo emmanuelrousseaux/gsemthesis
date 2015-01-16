@@ -167,9 +167,13 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
   \def\thesisNumberLabel{Thesis No.}
 }
 
+\def\theauthorFirstname{}
 \newcommand{\authorFirstname}[1]{\def\theauthorFirstname{#1}}
+\def\theauthorLastname{}
 \newcommand{\authorLastname}[1]{\def\theauthorLastname{\textsc{#1}}}
+\def\thethesisField{}
 \newcommand{\thesisField}[1]{\def\thethesisField{#1}}
+\def\thethesisCommitteeA{}
 \newcommand{\thesisCommitteeA}[4]{%
 \ifx&#3&%
   \def\thethesisCommitteeA{}%
@@ -177,6 +181,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
   \def\thethesisCommitteeA{#1~#2~\textsc{#3},~#4}%
 \fi
 }
+\def\thethesisCommitteeB{}
 \newcommand{\thesisCommitteeB}[4]{%
 \ifx&#3&%
   \def\thethesisCommitteeB{}%
@@ -184,6 +189,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
   \def\thethesisCommitteeB{#1~#2~\textsc{#3},~#4}%
 \fi
 }
+\def\thethesisCommitteeC{}
 \newcommand{\thesisCommitteeC}[4]{%
 \ifx&#3&%
   \def\thethesisCommitteeC{}%
@@ -191,6 +197,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
   \def\thethesisCommitteeC{#1~#2~\textsc{#3},~#4}%
 \fi
 }
+\def\thethesisCommitteeD{}
 \newcommand{\thesisCommitteeD}[4]{%
 \ifx&#3&%
   \def\thethesisCommitteeD{}%
@@ -198,6 +205,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
   \def\thethesisCommitteeD{#1~#2~\textsc{#3},~#4}%
 \fi
 }
+\def\thethesisCommitteeE{}
 \newcommand{\thesisCommitteeE}[4]{%
 \ifx&#3&%
   \def\thethesisCommitteeE{}%
@@ -205,6 +213,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
   \def\thethesisCommitteeE{#1~#2~\textsc{#3},~#4}%
 \fi
 }
+\def\thethesisCommitteeF{}
 \newcommand{\thesisCommitteeF}[4]{%
 \ifx&#3&%
   \def\thethesisCommitteeF{}%
@@ -212,6 +221,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
   \def\thethesisCommitteeF{#1~#2~\textsc{#3},~#4}%
 \fi
 }
+\def\thethesisNumber{}
 \newcommand{\thesisNumber}[1]{\def\thethesisNumber{#1}}
 \newcommand{\printcoverpage}{%
   \thispagestyle{empty}
@@ -292,9 +302,13 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
   \rule{\linewidth}{0.4pt}
   \end{center}
 }
+\def\theacknowledgements{}
 \newcommand{\acknowledgements}[1]{\def\theacknowledgements{#1}}
+\def\theabstractEN{}
 \newcommand{\abstractEN}[1]{\def\theabstractEN{#1}}
+\def\theabstractFR{}
 \newcommand{\abstractFR}[1]{\def\theabstractFR{#1}}
+\def\thededication{}
 \newcommand{\dedication}[1]{\def\thededication{#1}}
 \newcommand{\printfrontmatter}{%
 

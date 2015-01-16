@@ -132,18 +132,6 @@
 %
 % \DescribeMacro{\printcoverpage}
 % The class provides the GSEM PhD thesis cover page ready to be printed. You can ask to print it by calling |\printcoverpage| just after the |\begin{document}|. Before printing the cover page you first need to configure it with your thesis details: title, author, supervisors, committee, etc.
-% The minimal example becomes:
-% \begin{verbatim}
-% \documentclass{gsemthesis}
-% \title{My PhD thesis}
-% \date{\today}
-% \thesisNumber{480}
-% ... (others configuration commands)
-% \begin{document}
-% \printcoverpage
-% Here is it, I started my PhD!
-% \end{document}
-% \end{verbatim}%
 % 
 % \DescribeMacro{\title}
 % \DescribeMacro{\date}
@@ -503,6 +491,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \begin{macro}{\authorFirstname}
 % Set up the |\theauthorFirstname| variable.
 %    \begin{macrocode}
+\def\theauthorFirstname{}
 \newcommand{\authorFirstname}[1]{\def\theauthorFirstname{#1}}
 %    \end{macrocode}
 % \end{macro}
@@ -510,6 +499,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \begin{macro}{\authorLastname}
 % Set up the |\theauthorLastname| variable.
 %    \begin{macrocode}
+\def\theauthorLastname{}
 \newcommand{\authorLastname}[1]{\def\theauthorLastname{\textsc{#1}}}
 %    \end{macrocode}
 % \end{macro}
@@ -517,6 +507,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \begin{macro}{\thesisField}
 % Set up the |\thethesisField| variable.
 %    \begin{macrocode}
+\def\thethesisField{}
 \newcommand{\thesisField}[1]{\def\thethesisField{#1}}
 %    \end{macrocode}
 % \end{macro}
@@ -524,6 +515,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \begin{macro}{\thesisCommitteeA}
 % Set up the |\thethesisCommitteeA| variable.
 %    \begin{macrocode}
+\def\thethesisCommitteeA{}
 \newcommand{\thesisCommitteeA}[4]{%
 \ifx&#3&%
   \def\thethesisCommitteeA{}%
@@ -537,6 +529,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \begin{macro}{\thesisCommitteeB}
 % Set up the |\thethesisCommitteeB| variable.
 %    \begin{macrocode}
+\def\thethesisCommitteeB{}
 \newcommand{\thesisCommitteeB}[4]{%
 \ifx&#3&%
   \def\thethesisCommitteeB{}%
@@ -550,6 +543,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \begin{macro}{\thesisCommitteeC}
 % Set up the |\thethesisCommitteeC| variable.
 %    \begin{macrocode}
+\def\thethesisCommitteeC{}
 \newcommand{\thesisCommitteeC}[4]{%
 \ifx&#3&%
   \def\thethesisCommitteeC{}%
@@ -563,6 +557,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \begin{macro}{\thesisCommitteeD}
 % Set up the |\thethesisCommitteeD| variable.
 %    \begin{macrocode}
+\def\thethesisCommitteeD{}
 \newcommand{\thesisCommitteeD}[4]{%
 \ifx&#3&%
   \def\thethesisCommitteeD{}%
@@ -576,6 +571,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \begin{macro}{\thesisCommitteeE}
 % Set up the |\thethesisCommitteeE| variable.
 %    \begin{macrocode}
+\def\thethesisCommitteeE{}
 \newcommand{\thesisCommitteeE}[4]{%
 \ifx&#3&%
   \def\thethesisCommitteeE{}%
@@ -589,6 +585,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \begin{macro}{\thesisCommitteeF}
 % Set up the |\thethesisCommitteeF| variable.
 %    \begin{macrocode}
+\def\thethesisCommitteeF{}
 \newcommand{\thesisCommitteeF}[4]{%
 \ifx&#3&%
   \def\thethesisCommitteeF{}%
@@ -602,6 +599,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \begin{macro}{\thesisNumber}
 % Set up the |\thethesisNumber| variable.
 %    \begin{macrocode}
+\def\thethesisNumber{}
 \newcommand{\thesisNumber}[1]{\def\thethesisNumber{#1}}
 %    \end{macrocode}
 % \end{macro}
@@ -696,6 +694,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \begin{macro}{\acknowledgements}
 % Set up the |\theacknowledgements| variable.
 %    \begin{macrocode}
+\def\theacknowledgements{}
 \newcommand{\acknowledgements}[1]{\def\theacknowledgements{#1}}
 %    \end{macrocode}
 % \end{macro}
@@ -703,6 +702,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \begin{macro}{\abstractEN}
 % Set up the |\theabstractEN| variable.
 %    \begin{macrocode}
+\def\theabstractEN{}
 \newcommand{\abstractEN}[1]{\def\theabstractEN{#1}}
 %    \end{macrocode}
 % \end{macro}
@@ -710,6 +710,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \begin{macro}{\abstractFR}
 % Set up the |\theabstractFR| variable.
 %    \begin{macrocode}
+\def\theabstractFR{}
 \newcommand{\abstractFR}[1]{\def\theabstractFR{#1}}
 %    \end{macrocode}
 % \end{macro}
@@ -717,6 +718,7 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \begin{macro}{\dedication}
 % Set up the |\thededication| variable.
 %    \begin{macrocode}
+\def\thededication{}
 \newcommand{\dedication}[1]{\def\thededication{#1}}
 %    \end{macrocode}
 % \end{macro}
@@ -837,7 +839,61 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 % \newpage
 % \section{Minimal working example}
 % \begin{verbatim}
-% Forthcoming
+% \documentclass{gsemthesis}
+% 
+% \title{An innovative approach to deal with a very important issue}
+% \date{\today}
+% \authorFirstname{Firstname}
+% \authorLastname{Lastname}
+% \thesisField{Econometrics}
+% 
+% \thesisCommitteeA{Prof.}{Mike}{Moore}{Advisor, University of Geneva}
+% \thesisCommitteeB{Prof.}{Mike}{Moore}{Chair, University of Honolulu}
+% \thesisCommitteeC{Prof.}{Mike}{Moore}{University of Omsk}
+% \thesisCommitteeD{Dr.}{Mike}{Moore}{Eidgenössische Technische Hochschule Zürich}
+% 
+% \acknowledgements{Your acknowledgements}
+% 
+% \abstractEN{English version of the abstract}
+% 
+% \abstractFR{French version of the abstract}
+% 
+% \dedication{To my family.}
+% 
+% \addbibresource{literature-review-topic1.bib}
+% \addbibresource{literature-review-topic2.bib}
+% 
+% \begin{document}
+% 
+% \printcoverpage
+% 
+% \printfrontmatter
+% 
+% % INTRODUCTION
+% \startintroduction 
+% 
+% Write your introduction here.
+% 
+% % CHAPTER
+% \chapter{Literature review}
+% \label{ch:lt}
+% 
+% Your literature review
+% 
+% % CONCLUSION
+% \startconclusion
+% 
+% The conclusion.
+% 
+% % BACKMATTER
+% \listoftables
+% \listoffigures
+% 
+% % Bibliography (at the end)
+% \newpage
+% \printbibliography
+% 
+% \end{document}
 % \end{verbatim}
 % \Finale
 \endinput

@@ -19,5 +19,11 @@ cp src/gsemthesis.cls example/
 cd example/
 pdflatex phdthesis-example.tex rem better to run it manually
 biber phdthesis-example
+cd ..
 
+rem test example-minimal file
+cp src/gsemthesis.cls example-minimal/
+cd example-minimal/
+pdflatex phdthesis-example-minimal.tex rem better to run it manually
+biber phdthesis-example-minimal
 cd ..
