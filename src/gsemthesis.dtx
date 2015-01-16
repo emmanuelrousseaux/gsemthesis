@@ -208,6 +208,20 @@
 %
 % \noindent Now your `Quick Build’ button will create a PDF with the bibliography.
 %
+% \subsubsection{Configure Rstudio/knitr to run biber}
+%
+% In Rstudio/knitr you have to include the following chunk in your |.Rnw| document.
+%
+% \begin{verbatim}
+% <<tex-setup, include=FALSE, cache=FALSE, echo=FALSE>>=
+% Sys.setenv(
+%   TEXINPUTS=getwd(),
+%   BIBINPUTS=getwd(),
+%   BSTINPUTS=getwd()
+% )
+% @
+% \end{verbatim}
+%
 % \subsubsection{Basic commands}
 %
 % To add a bibliography into your document, you have to define your bib file in the preamble of your tex file: |\addbibresource{literature-review-topic1.bib}| Then, at the end of your document, the command |\printbibliography| will create the biblography.
