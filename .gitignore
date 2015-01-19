@@ -37,6 +37,8 @@ gsemthesis.Rproj
 todo.md~
 .Rhistory
 *~
+src/gsemthesis.cls
+src/gsemthesis.pdf
 example/gsemthesis.cls
 example-minimal/gsemthesis.cls
 README.html
