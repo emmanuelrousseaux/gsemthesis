@@ -99,7 +99,7 @@
 % \section{Introduction}
 %
 % PhD thesis published within the Geneva School of Economics and Management have to follows some guidelines, especially for the cover page. The |gsemthesis| class is a \LaTeX{} template providing utilities to easily set up these guidelines in your thesis. In addition the class loads several usefull packages generally used when writing a thesis.
-% We recommend the user to have a look to the class definition in Section \ref{sec:classdef} to be aware of the list of packages that the class already includes. The Section \ref{sec:usage} details how to start with the |gsemthesis| class and how to configure your thesis. The user interested in customizing the class can read the Section \ref{sec:implementation} which details the full implementation of the class with usefull comments.
+% We recommend the user to have a look to the class definition in Section \ref{sec:classdef} to be aware of the list of packages that the class already includes. The Section \ref{sec:usage} details how to start with the |gsemthesis| class and how to configure your thesis. The Section \ref{sec:example} provides a minimal working example you can copy/paste for starting your dissertation. The user interested in customizing the class can read the Section \ref{sec:implementation} which details the full implementation of the class with usefull comments.
 % 
 % \medskip
 %
@@ -138,7 +138,7 @@
 % \end{document}
 % \end{verbatim}
 %
-% \noindent The Section \ref{sec:example} provides a minimal working example you can copy/paste for starting your dissertation. The commands used are explained in the following sections.
+% \noindent The Section \ref{sec:example} provides a minimal working example you can copy/paste for starting your dissertation. The commands available for configuring you thesis are explained in the following sections.
 %
 % \subsection{Writing the dissertation in French}
 %
@@ -247,6 +247,68 @@
 % \DescribeEnv{itemize*}
 % The default |itemize| environment set important spaces between each items, the previous paragraph and the next paragraph. The |itemize*| environment reduces these spaces to allow a more compact (and nicer) presentation of a list item.
 % \emph{Forthcoming}. To add: section in redaction, todonotes
+%
+% \newpage
+% \section{Minimal working example}
+% \label{sec:example}
+% \begin{verbatim}
+% \documentclass{gsemthesis}
+% 
+% \title{An innovative approach to deal with a very important issue}
+% \date{\today}
+% \authorFirstname{Firstname}
+% \authorLastname{Lastname}
+% \thesisField{Econometrics}
+% 
+% \thesisCommitteeA{Prof.}{Mike}{Moore}{Advisor, University of Geneva}
+% \thesisCommitteeB{Prof.}{Mike}{Moore}{Chair, University of Honolulu}
+% \thesisCommitteeC{Prof.}{Mike}{Moore}{University of Omsk}
+% \thesisCommitteeD{Dr.}{Mike}{Moore}{Eidgenössische Technische Hochschule Zürich}
+% \thesisNumber{480}
+% 
+% \acknowledgements{Your acknowledgements}
+% 
+% \abstractEN{English version of the abstract}
+% 
+% \abstractFR{French version of the abstract}
+% 
+% \dedication{To my family.}
+% 
+% \addbibresource{literature-review-topic1.bib}
+% \addbibresource{literature-review-topic2.bib}
+% 
+% \begin{document}
+% 
+% \printcoverpage
+% 
+% \printfrontmatter
+% 
+% % INTRODUCTION
+% \startintroduction 
+% 
+% Write your introduction here.
+% 
+% % CHAPTER
+% \chapter{A first chapter}
+% \label{ch:chapterone}
+%
+% My chapter 1.
+% 
+% % CONCLUSION
+% \startconclusion
+% 
+% The conclusion.
+% 
+% % BACKMATTER
+% \listoftables
+% \listoffigures
+% 
+% % Bibliography (at the end)
+% \newpage
+% \printbibliography
+% 
+% \end{document}
+% \end{verbatim}
 %
 % \section{Implementation}
 % \label{sec:implementation}
@@ -870,66 +932,5 @@ maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 %    \end{macrocode}
 % \end{environment}
 %
-% \newpage
-% \section{Minimal working example}
-% \label{sec:example}
-% \begin{verbatim}
-% \documentclass{gsemthesis}
-% 
-% \title{An innovative approach to deal with a very important issue}
-% \date{\today}
-% \authorFirstname{Firstname}
-% \authorLastname{Lastname}
-% \thesisField{Econometrics}
-% 
-% \thesisCommitteeA{Prof.}{Mike}{Moore}{Advisor, University of Geneva}
-% \thesisCommitteeB{Prof.}{Mike}{Moore}{Chair, University of Honolulu}
-% \thesisCommitteeC{Prof.}{Mike}{Moore}{University of Omsk}
-% \thesisCommitteeD{Dr.}{Mike}{Moore}{Eidgenössische Technische Hochschule Zürich}
-% \thesisNumber{480}
-% 
-% \acknowledgements{Your acknowledgements}
-% 
-% \abstractEN{English version of the abstract}
-% 
-% \abstractFR{French version of the abstract}
-% 
-% \dedication{To my family.}
-% 
-% \addbibresource{literature-review-topic1.bib}
-% \addbibresource{literature-review-topic2.bib}
-% 
-% \begin{document}
-% 
-% \printcoverpage
-% 
-% \printfrontmatter
-% 
-% % INTRODUCTION
-% \startintroduction 
-% 
-% Write your introduction here.
-% 
-% % CHAPTER
-% \chapter{A first chapter}
-% \label{ch:chapterone}
-%
-% My chapter 1.
-% 
-% % CONCLUSION
-% \startconclusion
-% 
-% The conclusion.
-% 
-% % BACKMATTER
-% \listoftables
-% \listoffigures
-% 
-% % Bibliography (at the end)
-% \newpage
-% \printbibliography
-% 
-% \end{document}
-% \end{verbatim}
 % \Finale
 \endinput
