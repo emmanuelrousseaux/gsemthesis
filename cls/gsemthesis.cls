@@ -8,7 +8,7 @@
 %% 
 %% This is a generated file.
 %% 
-%% Copyright (C) 2015 by Emmanuel Rousseaux <emmanuel.rousseaux@gmail.com>
+%% Copyright (C) 2014-2015 by Emmanuel Rousseaux <emmanuel.rousseaux@gmail.com>
 %% 
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, version 1.3c
