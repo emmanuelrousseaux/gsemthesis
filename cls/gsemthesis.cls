@@ -28,6 +28,8 @@
 \DeclareOption{fr}{\toggletrue{fr}}
 \newtoggle{draft}
 \DeclareOption{draft}{\toggletrue{draft}}
+\newtoggle{custombib}
+\DeclareOption{custombib}{\toggletrue{custombib}}
 \ProcessOptions
 \RequirePackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage{setspace}
@@ -96,41 +98,45 @@ urlcolor=erblue%
 \usepackage{csquotes}
 \usepackage{datetime}
 \newdateformat{monthyeardate}{\monthname[\THEMONTH] \THEYEAR}
-\usepackage[backend=biber,natbib=true,style=authoryear-comp,sorting=nymdt,%
-maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
-\DeclareSortingScheme{nymdt}{
-  \sort{
-    \field{presort}
-  }
-  \sort[final]{
-    \field{sortkey}
-  }
-  \sort{
-    \name{sortname}
-    \name{author}
-    \name{editor}
-    \name{translator}
-    \field{sorttitle}
-    \field{title}
-  }
-  \sort{
-    \field{sortyear}
-    \field{year}
-  }
-  \sort{
-    \field[padside=left,padwidth=2,padchar=0]{month}
-    \literal{00}
-  }
-  \sort{
-    \field[padside=left,padwidth=2,padchar=0]{day}
-    \literal{00}
-  }
-  \sort{
-    \field{sorttitle}
-  }
-  \sort{
-    \field[padside=left,padwidth=4,padchar=0]{volume}
-    \literal{0000}
+\iftoggle{custombib}{}{
+  \usepackage[backend=biber,natbib=true,style=authoryear-comp,sorting=nymdt,%
+  maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
+}
+\iftoggle{custombib}{}{
+  \DeclareSortingScheme{nymdt}{
+    \sort{
+      \field{presort}
+    }
+    \sort[final]{
+      \field{sortkey}
+    }
+    \sort{
+      \name{sortname}
+      \name{author}
+      \name{editor}
+      \name{translator}
+      \field{sorttitle}
+      \field{title}
+    }
+    \sort{
+      \field{sortyear}
+      \field{year}
+    }
+    \sort{
+      \field[padside=left,padwidth=2,padchar=0]{month}
+      \literal{00}
+    }
+    \sort{
+      \field[padside=left,padwidth=2,padchar=0]{day}
+      \literal{00}
+    }
+    \sort{
+      \field{sorttitle}
+    }
+    \sort{
+      \field[padside=left,padwidth=4,padchar=0]{volume}
+      \literal{0000}
+    }
   }
 }
 \def\theFaculty{Geneva School of Economics and Management}

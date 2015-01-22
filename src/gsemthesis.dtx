@@ -234,6 +234,14 @@
 %
 % To add a bibliography into your document, you have to define your bib file in the preamble of your tex file: |\addbibresource{literature-review-topic1.bib}| Then, at the end of your document, the command |\printbibliography| will create the biblography.
 %
+% \subsubsection{Using you own bibliography management configuration}
+%
+% If you prefer not to use the bibliography management configuration we implemented in this class, you can disabled it and writing you own. Disabling the \emph{gsemthesis} bibliography management configuration is easily done with the |custombib| class option:
+% \begin{verbatim}
+% \documentclass[custombib]{gsemthesis}
+% \end{verbatim}
+% When using this option you will have to provide the package you want to use for managing your bibliography (|natbib|, |chapterbib|, etc.). As the option disables all settings you will also need to load the package |biblatex| if you want to use it.
+%
 % \subsection{\emph{Draft} mode}
 %
 % When sharing draft versions of your dissertation you may prefer to hide some items of the cover page (thesis committee, thesis number, etc.) and some Sections (acknowledgments, the dedications. etc.) that probably have not been defined yet. For this purpose you can use the |draft| option:
@@ -343,6 +351,11 @@
 %    \begin{macrocode}
 \newtoggle{draft}
 \DeclareOption{draft}{\toggletrue{draft}}
+%    \end{macrocode}%
+% We add the option \emph{custombib}
+%    \begin{macrocode}
+\newtoggle{custombib}
+\DeclareOption{custombib}{\toggletrue{custombib}}
 %    \end{macrocode}%
 % We process options we just defined
 %    \begin{macrocode}
@@ -493,45 +506,49 @@ urlcolor=erblue%
 % \subsection{Bibliography management}
 % We use biblatex/biber to process the bibliography with the following settings: (1) citations with more than two authors will always be writen as ``First author et al.'', (2) this ``et al.'' rule is applied even if it leads to ambiguities between long list of authors with the same first author. 
 %    \begin{macrocode}
-\usepackage[backend=biber,natbib=true,style=authoryear-comp,sorting=nymdt,%
-maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
+\iftoggle{custombib}{}{
+  \usepackage[backend=biber,natbib=true,style=authoryear-comp,sorting=nymdt,%
+  maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
+}
 %    \end{macrocode}
 % We use the style authoryear to print authors and the year when citing a document in the text. We define a customized sorting style to sort the list of references (printed at the end of the document) according to this (ordered) attributes: name, year, month, day, and title.
 % We define the following sorting scheme:
 %    \begin{macrocode}
-\DeclareSortingScheme{nymdt}{
-  \sort{
-    \field{presort}
-  }
-  \sort[final]{
-    \field{sortkey}
-  }
-  \sort{
-    \name{sortname}
-    \name{author}
-    \name{editor}
-    \name{translator}
-    \field{sorttitle}
-    \field{title}
-  }
-  \sort{
-    \field{sortyear}
-    \field{year}
-  }
-  \sort{
-    \field[padside=left,padwidth=2,padchar=0]{month}
-    \literal{00}
-  }
-  \sort{
-    \field[padside=left,padwidth=2,padchar=0]{day}
-    \literal{00}
-  }
-  \sort{
-    \field{sorttitle}
-  }
-  \sort{
-    \field[padside=left,padwidth=4,padchar=0]{volume}
-    \literal{0000}
+\iftoggle{custombib}{}{
+  \DeclareSortingScheme{nymdt}{
+    \sort{
+      \field{presort}
+    }
+    \sort[final]{
+      \field{sortkey}
+    }
+    \sort{
+      \name{sortname}
+      \name{author}
+      \name{editor}
+      \name{translator}
+      \field{sorttitle}
+      \field{title}
+    }
+    \sort{
+      \field{sortyear}
+      \field{year}
+    }
+    \sort{
+      \field[padside=left,padwidth=2,padchar=0]{month}
+      \literal{00}
+    }
+    \sort{
+      \field[padside=left,padwidth=2,padchar=0]{day}
+      \literal{00}
+    }
+    \sort{
+      \field{sorttitle}
+    }
+    \sort{
+      \field[padside=left,padwidth=4,padchar=0]{volume}
+      \literal{0000}
+    }
   }
 }
 %    \end{macrocode}
