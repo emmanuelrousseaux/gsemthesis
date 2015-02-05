@@ -92,6 +92,7 @@ urlcolor=erblue%
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \iftoggle{fr}{
   \usepackage[francais]{babel}
+  \usepackage[T1]{fontenc}
 }{
   \usepackage[english]{babel}
 }
