@@ -759,9 +759,11 @@ urlcolor=erblue%
     }
   }
   
-  \vspace*{0.8cm}
-  
-  \iftoggle{draft}{~}{\thesisCommitteeLabel}
+  \iftoggle{draft}{~}{
+    \vspace*{0.8cm}
+    
+    \thesisCommitteeLabel
+  }
 
   \vspace*{0.2em}
   
