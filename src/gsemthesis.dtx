@@ -190,31 +190,31 @@
 %
 % \subsubsection{Configure TeXstudio to run biber}
 %
-% In the TeXstudio preferences (click on Options $\rightarrow$ Configure TeXstudio), choose the `Build' tab and modify the `Default Bibliography’ to `Biber’.
+% In the TeXstudio preferences (click on Options $\rightarrow$ Configure TeXstudio), choose the `Build' tab and modify the `Default Bibliography' to `Biber'.
 %
 % \medskip
 %
-% \noindent Run `Build \& View’ from the `Tools’ menu (or press the two green arrows icon), which will create a PDF but with the bibliography not completed.
+% \noindent Run `Build \& View' from the `Tools' menu (or press the two green arrows icon), which will create a PDF but with the bibliography not completed.
 %
 % \medskip
 %
-% \noindent Run `Bibliography’ from the `Tools’ menu.
+% \noindent Run `Bibliography' from the `Tools' menu.
 %
 % \medskip
 %
-% \noindent Run `Build \& View’ again to create a PDF with the bibliography.
+% \noindent Run `Build \& View' again to create a PDF with the bibliography.
 %
 % \subsubsection{Configure Texmaker to run biber}
 %
-% In the Texmaker preferences (click on Options $\rightarrow$ Configure Texmaker), choose the `Commands’ tab and replace |bibtex %| by |biber %| in the field |Bib(la)tex|. On Windows, you may also browse to the |biber.exe| using the folder icon on the side.
+% In the Texmaker preferences (click on Options $\rightarrow$ Configure Texmaker), choose the `Commands' tab and replace |bibtex %| by |biber %| in the field |Bib(la)tex|. On Windows, you may also browse to the |biber.exe| using the folder icon on the side.
 %
 % \medskip
 %
-% \noindent Choose the `Quick Build’ tab and select the second option |PdfLaTeX + Bib(la)tex +| |PdfLaTex (x2) + View Pdf|
+% \noindent Choose the `Quick Build' tab and select the second option |PdfLaTeX + Bib(la)tex +| |PdfLaTex (x2) + View Pdf|
 %
 % \medskip
 %
-% \noindent Now your `Quick Build’ button will create a PDF with the bibliography.
+% \noindent Now your `Quick Build' button will create a PDF with the bibliography.
 %
 % \subsubsection{Configure Rstudio/knitr to run biber}
 %
@@ -248,6 +248,7 @@
 % \begin{verbatim}
 % \documentclass[draft]{gsemthesis}
 % \end{verbatim}
+% \noindent\emph{Note:} this draft mode extends the classical \LaTeX draft mode and then all packages supporting a draft mode will also switch to the draft mode\footnote{Common packages supporting a draft mode are: |changes| (final disables markup of changes, and list of changes), |graphics| (draw frames instead of including images), |graphicx| (draw frames instead of including images), |hyperref| (disable all linking features), |listings| (don't include external files), |listofsymbols| (final suppresses printing of macro names and unused symbols), |mfpic| (assume every latex run to be the first one), |microtype| (disable all features), |pdfcomment| (final suppresses the comments), |pdfpages| (don't include external file but print a frame box), |pgf| (similar to graphics/x: all images will be replaced by empty rectangles), |showkeys| (draft shows the labels, the default option), |thumbs| (thumbs' width=2pt, thumbs' text=black, thumbs' color=grey), |varioref| (turn warnings in error messages). \emph{Source:} \url{http://tex.stackexchange.com/questions/49277/what-does-the-draft-mode-change/49278}}. For convenience purposes we forced packages |graphicx| and |hyperref| to be in \emph{final} mode even when draft mode is on.
 %
 % \subsection{Miscellaneous}
 %
@@ -381,7 +382,7 @@
 % \subsection{Graphics}
 % We add some practical packages to handle several image files (.png, .pdf), handle placement of graphics, and handle subfigures
 %    \begin{macrocode}
-\usepackage{graphicx}
+\usepackage[final]{graphicx}
 \usepackage{float}
 \usepackage{subfigure}
 %    \end{macrocode}
@@ -396,13 +397,14 @@
 % citecolor=gsemblue,%
 % urlcolor=gsemblue%
 % }%
-\hypersetup{%
-colorlinks=true,%
-linkcolor=black,%
-filecolor=erblue,%
-citecolor=erblue,%
-urlcolor=erblue%
-}%
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  filecolor=erblue,
+  citecolor=erblue,
+  urlcolor=erblue,
+  final
+}
 %    \end{macrocode}
 % We use the |url| package for a complete support of external links and define a nice font style.
 %    \begin{macrocode}

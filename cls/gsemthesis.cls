@@ -37,17 +37,18 @@
 \definecolor{erblue}{HTML}{126199}
 \definecolor{erorange}{HTML}{FF7F00}
 \definecolor{gsemblue}{HTML}{465F7F}
-\usepackage{graphicx}
+\usepackage[final]{graphicx}
 \usepackage{float}
 \usepackage{subfigure}
 \RequirePackage{hyperref}
-\hypersetup{%
-colorlinks=true,%
-linkcolor=black,%
-filecolor=erblue,%
-citecolor=erblue,%
-urlcolor=erblue%
-}%
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  filecolor=erblue,
+  citecolor=erblue,
+  urlcolor=erblue,
+  final
+}
 \RequirePackage{url}
 \urlstyle{sf}
 \usepackage{amssymb,amsmath,amsfonts}
