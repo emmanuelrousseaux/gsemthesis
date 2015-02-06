@@ -358,7 +358,12 @@
 \newtoggle{custombib}
 \DeclareOption{custombib}{\toggletrue{custombib}}
 %    \end{macrocode}%
-% We process options we just defined
+% The recommended page format is A4. The B5 page format is given in option.
+%    \begin{macrocode}
+\DeclareOption{b5paper}{
+  \PassOptionsToClass{\CurrentOption}{book}
+}
+%    \end{macrocode}%
 %    \begin{macrocode}
 \ProcessOptions
 %    \end{macrocode}%

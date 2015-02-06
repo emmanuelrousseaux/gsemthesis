@@ -30,6 +30,9 @@
 \DeclareOption{draft}{\toggletrue{draft}}
 \newtoggle{custombib}
 \DeclareOption{custombib}{\toggletrue{custombib}}
+\DeclareOption{b5paper}{
+  \PassOptionsToClass{\CurrentOption}{book}
+}
 \ProcessOptions
 \RequirePackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage{setspace}
