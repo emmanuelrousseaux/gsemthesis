@@ -19,7 +19,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{gsemthesis}
-    [2015/01/16 v0.9.3 .dtx gsemthesis file]
+    [2015/02/09 v0.9.4 .dtx gsemthesis file]
 \LoadClass[a4paper,12pt,twoside]{book}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
