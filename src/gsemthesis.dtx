@@ -520,7 +520,9 @@
 % \subsection{Bibliography management}
 % We use biblatex/biber to process the bibliography with the following settings: (1) citations with more than two authors will always be writen as ``First author et al.'', (2) this ``et al.'' rule is applied even if it leads to ambiguities between long list of authors with the same first author. 
 %    \begin{macrocode}
-\iftoggle{custombib}{}{
+\iftoggle{custombib}{
+  % do nothing
+}{
   \usepackage[backend=biber,natbib=true,style=authoryear-comp,sorting=nymdt,%
   maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 }

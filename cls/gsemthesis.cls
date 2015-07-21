@@ -103,7 +103,9 @@
 \usepackage{csquotes}
 \usepackage{datetime}
 \newdateformat{monthyeardate}{\monthname[\THEMONTH] \THEYEAR}
-\iftoggle{custombib}{}{
+\iftoggle{custombib}{
+  % do nothing
+}{
   \usepackage[backend=biber,natbib=true,style=authoryear-comp,sorting=nymdt,%
   maxbibnames=99,mincitenames=1,maxcitenames=2,uniquelist=false]{biblatex}
 }
