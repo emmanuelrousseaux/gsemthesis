@@ -332,7 +332,9 @@
 \newcommand{\printfrontmatter}{%
 
   \iftoggle{draft}{~}{
+    \hypersetup{pageanchor=false}
     \frontmatter
+    \hypersetup{pageanchor=true}
 
     \iftoggle{fr}{
       \chapter*{Remerciements}
