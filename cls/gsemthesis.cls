@@ -34,7 +34,7 @@
   \PassOptionsToClass{\CurrentOption}{book}
 }
 \ProcessOptions
-\RequirePackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\RequirePackage[headheight=15pt, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage{setspace}
 \usepackage{xcolor}
 \definecolor{erblue}{HTML}{126199}
