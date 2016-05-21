@@ -19,10 +19,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{gsemthesis}
-    [2015/02/09 v0.9.4 .dtx gsemthesis file]
-\LoadClass[a4paper,12pt,twoside]{book}
-\usepackage[utf8]{inputenc}
-\usepackage{lmodern}
+    [2016/05/21 v0.9.4-1 .dtx gsemthesis file]
 \usepackage{etoolbox}
 \newtoggle{fr}
 \DeclareOption{fr}{\toggletrue{fr}}
@@ -34,6 +31,9 @@
   \PassOptionsToClass{\CurrentOption}{book}
 }
 \ProcessOptions
+\LoadClass[a4paper,12pt,twoside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
 \RequirePackage[headheight=15pt, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage{setspace}
 \usepackage{xcolor}

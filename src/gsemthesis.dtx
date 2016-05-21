@@ -20,7 +20,7 @@
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{gsemthesis}
 %<*class>
-    [2015/02/09 v0.9.4 .dtx gsemthesis file]
+    [2016/05/21 v0.9.4-1 .dtx gsemthesis file]
 %</class>
 %
 %<*driver>
@@ -333,19 +333,7 @@
 % \subsection{Document properties}
 % \label{sec:classdef}
 %
-% The class is derived from the standard |book| class as follows:
-%    \begin{macrocode}
-\LoadClass[a4paper,12pt,twoside]{book}
-%    \end{macrocode}%
-% We set the document encoding to UTF-8
-%    \begin{macrocode}
-\usepackage[utf8]{inputenc}
-%    \end{macrocode}%
-% We use the |lmodern| vectorial fonts to render the document.
-%    \begin{macrocode}
-\usepackage{lmodern}
-%    \end{macrocode}
-% We use the |etoolbox| package for defining class options (fr, draft)
+% We use the |etoolbox| package for defining class options (fr, draft, etc.)
 %    \begin{macrocode}
 \usepackage{etoolbox}
 %    \end{macrocode}%
@@ -373,6 +361,18 @@
 %    \begin{macrocode}
 \ProcessOptions
 %    \end{macrocode}%
+% The class is derived from the standard |book| class as follows:
+%    \begin{macrocode}
+\LoadClass[a4paper,12pt,twoside]{book}
+%    \end{macrocode}%
+% We set the document encoding to UTF-8
+%    \begin{macrocode}
+\usepackage[utf8]{inputenc}
+%    \end{macrocode}%
+% We use the |lmodern| vectorial fonts to render the document.
+%    \begin{macrocode}
+\usepackage{lmodern}
+%    \end{macrocode}
 % We use the |geometry| package to set margin properties
 %    \begin{macrocode}
 \RequirePackage[headheight=15pt, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
