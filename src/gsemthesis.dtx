@@ -189,6 +189,11 @@
 % \DescribeMacro{\startconclusion}
 % Therefore, instead of using |\chapter{introduction}| (respectively |\chapter{conclusion}|) to start a such chapter we provide the function |\startintroduction| (respectively |\startconclusion|) to easily start the chapter with a correct handling of the table of contents and page headers.
 %
+% \subsection{Printing the back matter pages}
+%
+% % \DescribeMacro{\printbackmatter}
+% Back matter pages consist, of (1) the list of tables, (2) the list of figures, and (3) the bibliography. These pages will be printed in this order by calling the |\printbackmatter| command.
+%
 % \subsection{Bibliography}
 % \label{sec:bibliography}
 %
@@ -352,6 +357,11 @@
 \newtoggle{custombib}
 \DeclareOption{custombib}{\toggletrue{custombib}}
 %    \end{macrocode}%
+% We add the option \emph{nolinkcolor}
+%    \begin{macrocode}
+\def\gsemthesislinkcolor{erblue}
+\DeclareOption{nolinkcolor}{\def\gsemthesislinkcolor{black}}
+%    \end{macrocode}%
 % The recommended page format is A4 with a 12pt font setting.
 %    \begin{macrocode}
 \def\gsemthesispapersize{a4paper}
@@ -416,7 +426,7 @@
 % }%
 \hypersetup{
   colorlinks=true,
-  linkcolor=black,
+  linkcolor=\gsemthesislinkcolor,
   filecolor=erblue,
   citecolor=erblue,
   urlcolor=erblue,
@@ -861,7 +871,7 @@
 % \end{macro}
 %
 % \begin{macro}{\printfrontmatter}
-% The front matter pages are created with the following code
+% Front matter pages are set up as follows:
 %    \begin{macrocode}
 \newcommand{\printfrontmatter}{%
   
@@ -914,7 +924,9 @@
     }
   }
   
+  \hypersetup{linkcolor=black}
   \tableofcontents
+  \hypersetup{linkcolor=\gsemthesislinkcolor}
   
   \iftoggle{draft}{~}{
     \cleardoublepage
@@ -930,6 +942,23 @@
   }
   
   \mainmatter
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\printbackmatter}
+% Back matter pages are set up as follows:
+%    \begin{macrocode}
+\newcommand{\printbackmatter}{%
+\hypersetup{linkcolor=black}
+% List of tables and figures
+\listoftables
+\listoffigures
+\hypersetup{linkcolor=\gsemthesislinkcolor}
+
+% Bibliography (at the end)
+\newpage
+\printbibliography
 }%
 %    \end{macrocode}
 % \end{macro}

@@ -27,6 +27,8 @@
 \DeclareOption{draft}{\toggletrue{draft}}
 \newtoggle{custombib}
 \DeclareOption{custombib}{\toggletrue{custombib}}
+\def\gsemthesislinkcolor{erblue}
+\DeclareOption{nolinkcolor}{\def\gsemthesislinkcolor{black}}
 \def\gsemthesispapersize{a4paper}
 \def\gsemthesisfontsize{12pt}
 \DeclareOption{b5}{
@@ -49,7 +51,7 @@
 \RequirePackage{hyperref}
 \hypersetup{
   colorlinks=true,
-  linkcolor=black,
+  linkcolor=\gsemthesislinkcolor,
   filecolor=erblue,
   citecolor=erblue,
   urlcolor=erblue,
@@ -383,7 +385,9 @@
     }
   }
 
+  \hypersetup{linkcolor=black}
   \tableofcontents
+  \hypersetup{linkcolor=\gsemthesislinkcolor}
 
   \iftoggle{draft}{~}{
     \cleardoublepage
@@ -399,6 +403,15 @@
   }
 
   \mainmatter
+}%
+\newcommand{\printbackmatter}{%
+\hypersetup{linkcolor=black}
+\listoftables
+\listoffigures
+\hypersetup{linkcolor=\gsemthesislinkcolor}
+
+\newpage
+\printbibliography
 }%
 \newcommand{\startintroduction}{%
 \chapter*{Introduction}

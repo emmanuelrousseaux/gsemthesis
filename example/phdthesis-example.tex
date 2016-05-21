@@ -88,6 +88,7 @@ To my family.
 \lipsum[30]
 
 \section{A first approach}
+\label{sec:first}
 
 \lipsum[31-50]
 
@@ -95,7 +96,7 @@ To my family.
 
 \lipsum[51-70]
 
-In \textcite{keyref2} the authors improve the \emph{xxx} methodology that has been presented in \autocite{keyref1}.
+In \textcite{keyref2} the authors improve the methodology introduced in \autocite{keyref1} and discussed in Section \ref{sec:first}.
 
 
 
@@ -128,12 +129,6 @@ Appendices appear before the list of tables/figures and the bibliography.
 % BACKMATTER
 % ==================================================
 
-% List of tables and figures
-\listoftables
-\listoffigures
-
-% Bibliography (at the end)
-\newpage
-\printbibliography
+\printbackmatter
 
 \end{document}
