@@ -27,11 +27,14 @@
 \DeclareOption{draft}{\toggletrue{draft}}
 \newtoggle{custombib}
 \DeclareOption{custombib}{\toggletrue{custombib}}
-\DeclareOption{b5paper}{
-  \PassOptionsToClass{\CurrentOption}{book}
+\def\gsemthesispapersize{a4paper}
+\def\gsemthesisfontsize{12pt}
+\DeclareOption{b5}{
+  \def\gsemthesispapersize{b5paper}
+  \def\gsemthesisfontsize{10pt}
 }
 \ProcessOptions
-\LoadClass[a4paper,12pt,twoside]{book}
+\LoadClass[\gsemthesispapersize,\gsemthesisfontsize,twoside]{book}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \RequirePackage[headheight=15pt, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}

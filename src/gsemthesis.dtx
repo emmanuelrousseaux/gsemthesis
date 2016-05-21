@@ -352,10 +352,16 @@
 \newtoggle{custombib}
 \DeclareOption{custombib}{\toggletrue{custombib}}
 %    \end{macrocode}%
-% The recommended page format is A4. The B5 page format is given in option.
+% The recommended page format is A4 with a 12pt font setting.
 %    \begin{macrocode}
-\DeclareOption{b5paper}{
-  \PassOptionsToClass{\CurrentOption}{book}
+\def\gsemthesispapersize{a4paper}
+\def\gsemthesisfontsize{12pt}
+%    \end{macrocode}%
+% The B5 page format with a 10pt font setting is given in option.
+%    \begin{macrocode}
+\DeclareOption{b5}{
+  \def\gsemthesispapersize{b5paper}
+  \def\gsemthesisfontsize{10pt}
 }
 %    \end{macrocode}%
 %    \begin{macrocode}
@@ -363,7 +369,7 @@
 %    \end{macrocode}%
 % The class is derived from the standard |book| class as follows:
 %    \begin{macrocode}
-\LoadClass[a4paper,12pt,twoside]{book}
+\LoadClass[\gsemthesispapersize,\gsemthesisfontsize,twoside]{book}
 %    \end{macrocode}%
 % We set the document encoding to UTF-8
 %    \begin{macrocode}
